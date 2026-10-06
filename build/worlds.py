@@ -162,7 +162,7 @@ def rewrite(page_html, defs, contract, world_css, depth, world_name):
             "notebook.css": "A pink sun drawn in ballpoint and coloured in with marker"}
     if world_css in ARIA:
         out = out.replace("A pink sun with rays drawn by hand in pink and yellow chalk", ARIA[world_css])
-    theme = {"crayon.css": "#245FAE", "notebook.css": "#FCFCFA"}.get(world_css)
+    theme = {"crayon.css": "#245FAE", "notebook.css": "#FFFFFF"}.get(world_css)
     if theme:
         out = out.replace('<meta name="theme-color" content="#242C28">',
                           f'<meta name="theme-color" content="{theme}">')

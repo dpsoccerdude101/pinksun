@@ -34,9 +34,16 @@ Ground `#245FAE` construction-paper blue, wax `#F7F3E6`, crayon pink `#FF6FB2`, 
 `#FFE800`, masking tape `rgba(255,246,206,.74)`.
 
 ### World C — notebook (`/v/notebook/`)
-Paper `#FCFCFA`, ballpoint `#1B2A4A`, marker pink `#D6216B` (one step deeper than the proof so
-it holds on white), highlighter `#FFE23D`, amber marker `#E8A800` standing in for the yellow
+Paper `#FFFFFF`, ballpoint `#1B2A4A`, marker pink `#D6216B` (one step deeper than the proof so
+it holds on white), highlighter `#FFE23D`, amber marker `#C87A00` standing in for the yellow
 ink where pure `#FFE800` would fail on paper, margin rule `#D8232A`.
+
+The sheet is bare white: the only printed marks on it are the rules, and the margin rule is now
+one flat printed line rather than a fade. An earlier build tiled a 5% `feTurbulence` grain over
+the page to fake paper tooth, which against an off-white `#FCFCFA` ground read as a dirty,
+greyed sheet rather than a clean one. Both are gone. `build/measure_paper.py` holds the line:
+the ground has to measure `(255, 255, 255)` across most of the sheet while the rules keep
+printing on the 30px pitch.
 
 ## The two registries (the rule that holds all three worlds together)
 
