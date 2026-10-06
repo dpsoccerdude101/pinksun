@@ -20,7 +20,7 @@ Three registered palettes, one per world. A world never borrows another world's 
 |---|---|---|
 | `--board` | `#242C28` | slate green-black chalkboard, the whole surface |
 | `--board-deep` | `#1A211E` | the action bar and the close block |
-| `--board-lift` | `#2E3833` | raised patches: facts, the visit notice |
+| `--board-lift` | `#2E3833` | raised patches: the visit notice |
 | `--chalk` | `#F3F6F1` | chalk, warm-tinted so it sits on slate rather than glares |
 | `--chalk-body` | `rgba(243,246,241,.80)` | body copy, 8.6:1 on the board |
 | `--chalk-dim` | `rgba(243,246,241,.62)` | small data text, 5.3:1 |
@@ -103,6 +103,26 @@ Materials are real SVG turbulence, not a flat imitation.
 - **Tape (B)** — a translucent warm sheen, a torn-edge `clip-path`, and a soft shadow. A plain
   rectangle reads as a vector placeholder, not tape.
 
+## Hierarchy
+
+One path, five beats, and nothing said twice.
+
+1. **Tonight's board** — what is on now, which is the reason to open a page like this at all.
+2. **What you can book** — a five-row price list, one tap per row, one price each.
+3. **Who we are** — where the name came from, in three sentences.
+4. **Finding us** — address, hours, phone.
+5. **Pick a block and go** — the closing reserve block.
+
+Prices appear once (the list), hours once (Finding us), and the closing block repeats nothing the
+hero already said. The previous pass carried five programme cards, each with a paragraph, a
+schedule line and its own Reserve button; a four-cell stats grid that restated the numbers from
+those cards; and membership pricing in a third place. That is five equal-weight choices and seven
+booking controls, with no obvious one among them.
+
+The stats grid is gone, its numbers absorbed into the list and the lede. The cards are now rows:
+the same five programmes, the same prices on the same schedules, a fifth of the words, and a whole
+row as the target instead of a small link inside a card.
+
 ## Composition
 
 - **A** — asymmetric hero: copy left, the mark right. Poster pacing, hand-drawn dividers
@@ -124,6 +144,12 @@ Materials are real SVG turbulence, not a flat imitation.
   shared. World C renders it as a spacer.
 - `.actionbar` — the single persistent action. Fixed at the thumb on a phone, returned to the
   header row at 1024 px by CSS alone, so there is exactly one such element in the DOM.
+- `.rows` / `.row` — the price list. One row per programme and the whole row is the booking
+  control, so `min-height: 44 px` and one hairline between rows. World C needs no border at all:
+  the printed rules are the separators and every line of the row is exactly one `--sheet` tall, so
+  the list is written onto the paper's own grid rather than laid over it.
+- `.about` — three short paragraphs, the first one a lede a step up in size. No portrait, no
+  founding-year badge, no stat strip.
 - `.close` — the reserve block closing every page.
 
 ## Depth, motion, states
@@ -159,3 +185,5 @@ are authored SVG. No monospace costume; Archivo carries the data.
 - `/play/`, `/join/`, `/visit/` and `/faq/` are still the previous poster world. They need the
   chosen world's tokens before the site is coherent.
 - The booking platform URL is still unset (`assets/booking.js`, one line).
+- The about copy is invented, like the prices and the schedule. It explains the name from the
+  mark's own world rather than claiming anything about a real business.

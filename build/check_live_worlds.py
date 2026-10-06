@@ -1,65 +1,90 @@
 #!/usr/bin/env python3
-"""Verify the deployed site after the logo and town changes."""
-import json
+"""Verify the deployed PinkSun worlds after the hierarchy reshape.
+
+Asserts, per world: the five-row price list, the about section, one price surface,
+hours in exactly one place, the mark, the town, and no horizontal overflow.
+"""
 from playwright.sync_api import sync_playwright
 
 BASE = "https://dpsoccerdude101.github.io/pinksun/"
-WORLDS = [("board", ""), ("crayon", "v/crayon/"), ("notebook", "v/notebook/")]
-EXPECT = {"board": "rgb(36, 44, 40)", "crayon": "rgb(30, 79, 146)", "notebook": "rgb(252, 252, 250)"}
+WORLDS = {
+    "board": BASE,
+    "crayon": BASE + "v/crayon/",
+    "notebook": BASE + "v/notebook/",
+}
 
-out, fails = {}, []
-with sync_playwright() as p:
-    b = p.chromium.launch(executable_path="/usr/bin/chromium", args=["--no-sandbox"])
-    for name, slug in WORLDS:
-        m = b.new_context(viewport={"width": 390, "height": 844}, device_scale_factor=2,
-                          is_mobile=True, has_touch=True)
-        pg = m.new_page()
-        errs, failed = [], []
-        pg.on("console", lambda x: errs.append(f"{x.type}: {x.text}") if x.type == "error" else None)
-        pg.on("pageerror", lambda e: errs.append(str(e)))
-        pg.on("requestfailed", lambda r: failed.append(r.url))
-        pg.goto(BASE + slug, wait_until="networkidle")
-        pg.wait_for_timeout(2200)
-        d = pg.evaluate("""() => ({
-            bg: getComputedStyle(document.body).backgroundColor,
-            fonts: ['Gloria Hallelujah','Patrick Hand','Archivo'].map(f => document.fonts.check('20px "'+f+'"')),
-            rays: document.querySelectorAll('#sun line').length,
-            domeR: document.querySelector('#sun path').getAttribute('d'),
-            script: document.querySelector('.scribble').textContent.trim(),
-            wren: document.body.innerText.includes('Wren Hollow'),
-            fairport: document.body.innerText.includes('Fairport'),
-            markAria: (document.querySelector('.sun')||{}).getAttribute ? document.querySelector('.sun').getAttribute('aria-label') : '',
-            scrollW: document.documentElement.scrollWidth,
-            ctaBottom: Math.round(document.querySelector('[data-cta=primary]').getBoundingClientRect().bottom),
-            theme: (document.querySelector('meta[name=theme-color]')||{}).content,
-        })""")
-        pg.screenshot(path=f"/data/pinksun/site/.impeccable/review/live-{name}-mobile.png")
-        out[name] = d
-        if errs: fails.append(f"{name}: console {errs[:2]}")
-        if failed: fails.append(f"{name}: failed {failed[:2]}")
-        if d["bg"] != EXPECT[name]: fails.append(f"{name}: ground {d['bg']} != {EXPECT[name]}")
-        if not all(d["fonts"]): fails.append(f"{name}: fonts {d['fonts']}")
-        if d["rays"] != 12: fails.append(f"{name}: {d['rays']} rays, expected 12")
-        if d["script"] != "pink sun": fails.append(f"{name}: script is {d['script']!r}")
-        if not d["wren"]: fails.append(f"{name}: town missing")
-        if d["fairport"]: fails.append(f"{name}: Fairport still present")
-        if d["scrollW"] > 392: fails.append(f"{name}: overflow {d['scrollW']}")
-        if d["ctaBottom"] > 844: fails.append(f"{name}: primary CTA below the fold ({d['ctaBottom']})")
-        m.close()
-    ctx = b.new_context()
-    pg = ctx.new_page()
-    for f in ["assets/fonts/gloria-hallelujah-f3c465.woff2", "assets/fonts.css", "assets/chalk.css",
-              "assets/crayon.css", "assets/notebook.css", "v/crayon/", "v/notebook/"]:
-        st = pg.request.get(BASE + f).status
-        if st != 200: fails.append(f"{f}: HTTP {st}")
-    ctx.close()
-    b.close()
+JS = """() => {
+  const t = document.body.innerText;
+  return {
+    rows: document.querySelectorAll('.row').length,
+    rowNames: [...document.querySelectorAll('.row .nm')].map(e => e.textContent.trim()),
+    rowPrices: [...document.querySelectorAll('.row .pr')].map(e => e.textContent.replace(/\\s+/g,' ').trim()),
+    aboutP: document.querySelectorAll('.about p').length,
+    aboutH2: (document.querySelector('#about h2') || {}).textContent || '',
+    sections: [...document.querySelectorAll('main > section')].map(e => e.id),
+    h2s: [...document.querySelectorAll('h2')].map(e => e.textContent.split('\\n')[0].trim()),
+    hoursMentions: (t.match(/Mon to Fri/g) || []).length,
+    freeMentions: (t.match(/first session free|First session free/gi) || []).length,
+    fairport: /fairport/i.test(t),
+    wrenHollow: /Wren Hollow/.test(t),
+    rays: document.querySelectorAll('.hero-art .sun line').length,
+    booking: document.querySelectorAll('[data-booking]').length,
+    deep: document.querySelectorAll('[data-booking-path]').length,
+    primary: document.querySelectorAll('[data-cta="primary"]').length,
+    words: t.split(/\\s+/).filter(Boolean).length,
+    scrollW: document.documentElement.scrollWidth,
+  };
+}"""
 
-print(json.dumps(out, indent=1))
-print("=" * 58)
-if fails:
-    print(f"FAIL ({len(fails)})")
-    for f in fails:
-        print("  x", f)
-else:
-    print("PASS — live site: mark, town, fonts and funnel all check out.")
+
+def main():
+    with sync_playwright() as p:
+        b = p.chromium.launch(executable_path="/usr/bin/chromium", args=["--no-sandbox"])
+        fails = []
+        for name, url in WORLDS.items():
+            pg = b.new_page(viewport={"width": 390, "height": 844})
+            pg.goto(url, wait_until="load")
+            pg.wait_for_timeout(600)
+            d = pg.evaluate(JS)
+            print(f"--- {name}  ({url})")
+            print(f"    sections   {d['sections']}")
+            print(f"    h2         {d['h2s']}")
+            print(f"    rows={d['rows']} aboutP={d['aboutP']} rays={d['rays']} "
+                  f"primary={d['primary']} booking={d['booking']} deep={d['deep']} words={d['words']}")
+            print(f"    prices     {d['rowPrices']}")
+            print(f"    hours mentions={d['hoursMentions']} free-session mentions={d['freeMentions']} "
+                  f"wren={d['wrenHollow']} fairport={d['fairport']} scrollW={d['scrollW']}")
+
+            def want(cond, msg):
+                if not cond:
+                    fails.append(f"{name}: {msg}")
+
+            want(d["rows"] == 5, f"expected 5 price rows, found {d['rows']}")
+            for p in ["$12", "$95", "$45", "$40", "$120"]:
+                want(any(p in x for x in d["rowPrices"]), f"row list is missing {p}")
+            want(d["aboutP"] == 3, f"expected 3 about paragraphs, found {d['aboutP']}")
+            want("who we are" in d["aboutH2"].lower(), "about section has no heading")
+            want(d["sections"] == ["tonight", "play", "about", "visit", "close"],
+                 f"section order is {d['sections']}")
+            want(d["hoursMentions"] == 1, f"hours appear {d['hoursMentions']} times, want exactly 1")
+            want(d["freeMentions"] == 1, f"'first session free' appears {d['freeMentions']} times, want 1")
+            want(d["rays"] == 12, f"mark has {d['rays']} rays, want 12")
+            want(d["primary"] == 1, f"{d['primary']} primary CTAs, want 1")
+            want(d["deep"] == 5, f"{d['deep']} tier-specific booking links, want 5")
+            want(d["wrenHollow"], "Wren Hollow missing")
+            want(not d["fairport"], "Fairport still present")
+            want(d["scrollW"] <= 390, f"horizontal overflow: scrollWidth {d['scrollW']}")
+            pg.close()
+        b.close()
+
+    print()
+    if fails:
+        print(f"FAIL — {len(fails)} problem(s):")
+        for f in fails:
+            print("  *", f)
+        raise SystemExit(1)
+    print("PASS — three worlds, reshaped hierarchy live and correct.")
+
+
+if __name__ == "__main__":
+    main()
