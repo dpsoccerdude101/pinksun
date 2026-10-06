@@ -5,102 +5,94 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>PinkSun — Indoor Pickleball, Fairport NY</title>
 <meta name="description" content="Six cushioned indoor pickleball courts in Fairport, New York. Hosted open play, DUPR leagues, clinics and hourly court rental. Built for one hand on a phone.">
-<meta name="theme-color" content="#242C28">
+<meta name="theme-color" content="#FCFCFA">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 112'%3E%3Cg stroke-linecap='butt'%3E%3Cline x1='50' y1='104' x2='4' y2='104' stroke='%23FF3D9A' stroke-width='13'/%3E%3Cline x1='52' y1='91' x2='7' y2='79' stroke='%23FFE800' stroke-width='13'/%3E%3Cline x1='57' y1='79' x2='17' y2='56' stroke='%23FF3D9A' stroke-width='13'/%3E%3Cline x1='65' y1='69' x2='32' y2='36' stroke='%23FFE800' stroke-width='13'/%3E%3Cline x1='75' y1='61' x2='52' y2='21' stroke='%23FF3D9A' stroke-width='13'/%3E%3Cline x1='87' y1='56' x2='75' y2='11' stroke='%23FFE800' stroke-width='13'/%3E%3Cline x1='100' y1='54' x2='100' y2='8' stroke='%23FF3D9A' stroke-width='13'/%3E%3Cline x1='113' y1='56' x2='125' y2='11' stroke='%23FFE800' stroke-width='13'/%3E%3Cline x1='125' y1='61' x2='148' y2='21' stroke='%23FF3D9A' stroke-width='13'/%3E%3Cline x1='135' y1='69' x2='168' y2='36' stroke='%23FFE800' stroke-width='13'/%3E%3Cline x1='143' y1='79' x2='183' y2='56' stroke='%23FF3D9A' stroke-width='13'/%3E%3Cline x1='148' y1='91' x2='193' y2='79' stroke='%23FFE800' stroke-width='13'/%3E%3Cline x1='150' y1='104' x2='196' y2='104' stroke='%23FF3D9A' stroke-width='13'/%3E%3C/g%3E%3Cpath d='M56.5,104 A43.5,43.5 0 0 1 143.5,104 Z' fill='%23FF3D9A'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/fonts.css">
-<link rel="stylesheet" href="assets/chalk.css">
+<link rel="stylesheet" href="../../assets/fonts.css">
+<link rel="stylesheet" href="../../assets/notebook.css">
 </head>
 <body>
 <!--
-THESIS  A club's sign-in board, chalked by hand and wiped clean each day. It
-        refuses the category default: a photo hero stacked over equal feature
-        cards.
-OWN-WORLD  Slate green-black board, warm-tinted white chalk, fluorescent pink
-        PMS 806 and yellow PMS 803 chalk, hand-drawn dividers, dust and the
-        ghost of the wiped message. Chalk is SVG turbulence: displaced edges
-        broken up by grain, never a blur. Gloria Hallelujah lettering for the
-        world; every time, price and spot count set in Archivo and never
-        hand-lettered. No hard offset shadows.
-STORY  A first-timer learns they need no partner, no paddle and no rating, then
-        books a block. A regular reads tonight's board and books in two taps.
-FIRST VIEWPORT  The hand-drawn pink sun with the brush-script "pink sun" under
-        it, then "Six courts. One loud sun." in chalk, one readable line naming
-        indoor pickleball, and the pink Book a court button. On a phone the same
-        action sits fixed at the thumb.
-FORM  Chalk on a dark board. Position 5 of my ordered list. Seed 4d276e5f.
+THESIS  The sign-up sheet on the clipboard at the front desk: ballpoint
+        handwriting between printed rules, coloured in with marker.
+OWN-WORLD  Ruled school paper, blue-black ballpoint, a red margin rule, marker
+        pink and highlighter yellow for the brand. The paper's own lines are the
+        only dividers this world needs. Archivo carries every time and price.
+STORY  Identical to world A. A first-timer books, a regular books in two taps.
+FIRST VIEWPORT  The ballpoint sun outlined and coloured in, "pink sun" under it,
+        the headline with a highlighter swipe, the readable line naming indoor
+        pickleball, the pink button.
+FORM  Ballpoint on a ruled sheet. Position 3 of my ordered list. Seed 4d276e5f.
 FINISH  unreviewed and undocumented is unfinished; this build ends with the
         finish review, the verdict, and DESIGN.md.
 -->
+
 <a class="skip" href="#tonight">Skip to tonight's board</a>
 
 <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
   <defs>
-    <!-- Chalk is powder, not glow: turbulenced edges, then grain punches the
-         stroke full of holes the way chalk skips across a board. -->
-    <filter id="chalk" x="-14%" y="-14%" width="128%" height="128%" color-interpolation-filters="sRGB">
-      <!-- brittle edge: turbulence, at an amplitude a hand cannot hold steady -->
-      <feTurbulence type="turbulence" baseFrequency="0.045 0.055" numOctaves="2" seed="3" result="e"/>
-      <feDisplacementMap in="SourceGraphic" in2="e" scale="11" xChannelSelector="R" yChannelSelector="G" result="rough"/>
-      <!-- coarse blotches: where the stick skips and the board shows through -->
-      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7" result="patch"/>
-      <feColorMatrix in="patch" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  3.6 0 0 0 -0.85" result="patchA"/>
-      <!-- fine tooth: the grain of the board itself -->
-      <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="2" seed="2" result="tooth"/>
-      <feColorMatrix in="tooth" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.2 0 0 0 0.35" result="toothA"/>
-      <feComposite in="patchA" in2="toothA" operator="arithmetic" k1="1" k2="0" k3="0" k4="0" result="mask"/>
-      <feComposite in="rough" in2="mask" operator="in" result="body"/>
-      <feComponentTransfer in="body" result="dense"><feFuncA type="linear" slope="1.5"/></feComponentTransfer>
-      <!-- powder residue: pigment on a board is matte, never luminous -->
-      <feTurbulence type="fractalNoise" baseFrequency="0.24" numOctaves="3" seed="5" result="pw"/>
-      <feColorMatrix in="pw" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0.45 0 0 0 -0.06" result="pwA"/>
-      <feComposite in="pwA" in2="dense" operator="in" result="pwIn"/>
-      <feGaussianBlur in="dense" stdDeviation="0.7" result="softedge"/>
-      <feMerge>
-        <feMergeNode in="softedge"/>
-        <feMergeNode in="dense"/>
-        <feMergeNode in="pwIn"/>
-      </feMerge>
+    <!-- Ballpoint is an even, slightly nervous line; the colouring is marker,
+         laid on after the outline the way a kid fills a drawing in. -->
+    <filter id="chalk" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="8" result="e"/>
+      <feDisplacementMap in="SourceGraphic" in2="e" scale="2.6" xChannelSelector="R" yChannelSelector="G" result="rough"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="2" seed="2" result="t"/>
+      <feColorMatrix in="t" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.05 0 0 0 0.32" result="tA"/>
+      <feComposite in="rough" in2="tA" operator="in"/>
     </filter>
+    <pattern id="hatch" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(-38)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#D6216B" stroke-width="3.6"/>
+    </pattern>
 
-    <!-- the proof's mark, redrawn by hand: pink dome, rays alternating pink and yellow -->
     <symbol id="sun" viewBox="0 0 200 112">
-      <g stroke-linecap="round" fill="none">
-        <path d="M50.0,105.8 Q25.0,110.1 -0.4,107.6" stroke="#FF5AA7" stroke-width="10.6"/>
-        <path d="M51.9,90.3 Q30.0,86.4 9.4,78.2" stroke="#FFE800" stroke-width="11.1"/>
-        <path d="M57.8,77.3 Q36.2,67.6 18.2,52.2" stroke="#FF5AA7" stroke-width="10.8"/>
-        <path d="M64.0,69.3 Q49.8,51.9 31.9,38.3" stroke="#FFE800" stroke-width="11.2"/>
-        <path d="M76.6,59.8 Q62.8,39.6 53.9,16.8" stroke="#FF5AA7" stroke-width="11.7"/>
-        <path d="M85.2,56.3 Q81.6,34.3 72.1,14.2" stroke="#FFE800" stroke-width="12.3"/>
-        <path d="M100.9,54.0 Q104.1,28.7 101.8,3.3" stroke="#FF5AA7" stroke-width="10.9"/>
-        <path d="M113.0,55.7 Q116.5,31.4 125.7,8.7" stroke="#FFE800" stroke-width="10.9"/>
-        <path d="M126.2,61.4 Q134.8,41.1 148.9,24.3" stroke="#FF5AA7" stroke-width="11.6"/>
-        <path d="M136.6,69.9 Q154.8,56.7 169.3,39.4" stroke="#FFE800" stroke-width="12.1"/>
-        <path d="M143.7,79.6 Q163.9,70.8 182.1,58.1" stroke="#FF5AA7" stroke-width="12.2"/>
-        <path d="M148.3,91.2 Q168.4,84.0 189.3,80.4" stroke="#FFE800" stroke-width="11.9"/>
-        <path d="M150.0,102.6 Q171.2,99.3 192.6,101.5" stroke="#FF5AA7" stroke-width="12.3"/>
+      <g fill="none" stroke-linejoin="round">
+        <path d="M50.0,105.8 Q25.0,110.1 -0.4,107.6" stroke="#1B2A4A" stroke-width="16.6"/>
+        <path d="M50.0,105.8 Q25.0,110.1 -0.4,107.6" stroke="#D6216B" stroke-width="10.6"/>
+        <path d="M51.9,90.3 Q30.0,86.4 9.4,78.2" stroke="#1B2A4A" stroke-width="17.1"/>
+        <path d="M51.9,90.3 Q30.0,86.4 9.4,78.2" stroke="#E8A800" stroke-width="11.1"/>
+        <path d="M57.8,77.3 Q36.2,67.6 18.2,52.2" stroke="#1B2A4A" stroke-width="16.8"/>
+        <path d="M57.8,77.3 Q36.2,67.6 18.2,52.2" stroke="#D6216B" stroke-width="10.8"/>
+        <path d="M64.0,69.3 Q49.8,51.9 31.9,38.3" stroke="#1B2A4A" stroke-width="17.2"/>
+        <path d="M64.0,69.3 Q49.8,51.9 31.9,38.3" stroke="#E8A800" stroke-width="11.2"/>
+        <path d="M76.6,59.8 Q62.8,39.6 53.9,16.8" stroke="#1B2A4A" stroke-width="17.7"/>
+        <path d="M76.6,59.8 Q62.8,39.6 53.9,16.8" stroke="#D6216B" stroke-width="11.7"/>
+        <path d="M85.2,56.3 Q81.6,34.3 72.1,14.2" stroke="#1B2A4A" stroke-width="18.3"/>
+        <path d="M85.2,56.3 Q81.6,34.3 72.1,14.2" stroke="#E8A800" stroke-width="12.3"/>
+        <path d="M100.9,54.0 Q104.1,28.7 101.8,3.3" stroke="#1B2A4A" stroke-width="16.9"/>
+        <path d="M100.9,54.0 Q104.1,28.7 101.8,3.3" stroke="#D6216B" stroke-width="10.9"/>
+        <path d="M113.0,55.7 Q116.5,31.4 125.7,8.7" stroke="#1B2A4A" stroke-width="16.9"/>
+        <path d="M113.0,55.7 Q116.5,31.4 125.7,8.7" stroke="#E8A800" stroke-width="10.9"/>
+        <path d="M126.2,61.4 Q134.8,41.1 148.9,24.3" stroke="#1B2A4A" stroke-width="17.6"/>
+        <path d="M126.2,61.4 Q134.8,41.1 148.9,24.3" stroke="#D6216B" stroke-width="11.6"/>
+        <path d="M136.6,69.9 Q154.8,56.7 169.3,39.4" stroke="#1B2A4A" stroke-width="18.1"/>
+        <path d="M136.6,69.9 Q154.8,56.7 169.3,39.4" stroke="#E8A800" stroke-width="12.1"/>
+        <path d="M143.7,79.6 Q163.9,70.8 182.1,58.1" stroke="#1B2A4A" stroke-width="18.2"/>
+        <path d="M143.7,79.6 Q163.9,70.8 182.1,58.1" stroke="#D6216B" stroke-width="12.2"/>
+        <path d="M148.3,91.2 Q168.4,84.0 189.3,80.4" stroke="#1B2A4A" stroke-width="17.9"/>
+        <path d="M148.3,91.2 Q168.4,84.0 189.3,80.4" stroke="#E8A800" stroke-width="11.9"/>
+        <path d="M150.0,102.6 Q171.2,99.3 192.6,101.5" stroke="#1B2A4A" stroke-width="18.3"/>
+        <path d="M150.0,102.6 Q171.2,99.3 192.6,101.5" stroke="#D6216B" stroke-width="12.3"/>
       </g>
-      <path d="M57,104 C58,75 76,60 100,60 C124,60 143,76 144,104 Z" fill="#FF3D9A"/>
+      <path d="M57,104 C58,75 76,60 100,60 C124,60 143,76 144,104 Z" fill="url(#hatch)" stroke="#1B2A4A" stroke-width="3"/>
     </symbol>
 
-    <!-- one hand-drawn divider, stretched to any width -->
-    <symbol id="ruleline" viewBox="0 0 1440 10" preserveAspectRatio="none">
-      <path d="M0,4.4 L120,4.1 L240,4.3 L360,3.6 L480,5.9 L600,4.7 L720,6.1 L840,4.6 L960,6.5 L1080,6.1 L1200,3.4 L1320,4.1 L1440,6.3"
-            fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+    <symbol id="ruleline" viewBox="0 0 1440 12" preserveAspectRatio="none">
+      <path d="M0,6 L1440,6" fill="none" stroke="currentColor" stroke-width="1"/>
     </symbol>
 
-    <!-- a chalk arrow, drawn not typed -->
     <symbol id="down" viewBox="0 0 60 54">
-      <path d="M6,4 C26,10 44,20 50,44" fill="none" stroke="currentColor" stroke-width="3.4"
-            stroke-linecap="round" stroke-dasharray="7 6"/>
-      <path d="M41,34 L50.5,45.5 L56,30" fill="none" stroke="currentColor" stroke-width="3.4"
+      <path d="M6,4 C26,10 44,20 50,44" fill="none" stroke="currentColor" stroke-width="3"
+            stroke-linecap="round" stroke-dasharray="6 5"/>
+      <path d="M41,34 L50.5,45.5 L56,30" fill="none" stroke="currentColor" stroke-width="3"
             stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
   </defs>
 </svg>
 
+
+
 <div class="top">
   <div class="strip">
-    <a class="logo" href="./" aria-label="PinkSun home">
+    <a class="logo" href="../../" aria-label="PinkSun home">
       <svg viewBox="0 0 200 112" aria-hidden="true"><use href="#sun"/></svg>
       <span class="name">PinkSun</span>
     </a>
@@ -109,10 +101,10 @@ FINISH  unreviewed and undocumented is unfinished; this build ends with the
 
   <div class="actionbar">
     <div class="bar-links">
-      <a href="play/">Play</a>
-      <a href="join/">Join</a>
-      <a href="visit/">Visit</a>
-      <a href="faq/">FAQ</a>
+      <a href="../../play/">Play</a>
+      <a href="../../join/">Join</a>
+      <a href="../../visit/">Visit</a>
+      <a href="../../faq/">FAQ</a>
     </div>
     <a class="btn go" data-cta="nav" data-booking href="#booking-note">Book a court</a>
   </div>
@@ -128,7 +120,7 @@ FINISH  unreviewed and undocumented is unfinished; this build ends with the
         <a class="btn go wide" data-cta="primary" data-booking href="#booking-note">Book a court — $40/hr</a>
         <a class="btn chalkline wide" href="#tonight">See tonight's board<svg viewBox="0 0 60 54" aria-hidden="true"><use href="#down"/></svg></a>
       </div>
-      <p class="also">Twelve dollars to drop in, and your first one is free if you live in Fairport. <a href="join/#start">First time? Start here</a>.</p>
+      <p class="also">Twelve dollars to drop in, and your first one is free if you live in Fairport. <a href="../../join/#start">First time? Start here</a>.</p>
     </div>
 
     <div class="hero-art">
@@ -169,7 +161,7 @@ FINISH  unreviewed and undocumented is unfinished; this build ends with the
         <span class="spots open">6 left</span>
       </div>
     </div>
-    <p class="note">Spots update as people book. <a class="curl" href="play/">All five programs, in detail →</a></p>
+    <p class="note">Spots update as people book. <a class="curl" href="../../play/">All five programs, in detail →</a></p>
   </section>
 
   <div class="wrap"><svg class="rule" viewBox="0 0 1440 10" aria-hidden="true"><use href="#ruleline"/></svg></div>
@@ -240,7 +232,7 @@ FINISH  unreviewed and undocumented is unfinished; this build ends with the
       <div class="fact"><b>$12</b><span>Drop-in open play</span></div>
       <div class="fact"><b>$40</b><span>Court, per hour</span></div>
     </div>
-    <p class="note">Membership runs $79 a month, or $749 for one of fifty founding seats. <a class="curl" href="join/#tiers">See all three tiers →</a></p>
+    <p class="note">Membership runs $79 a month, or $749 for one of fifty founding seats. <a class="curl" href="../../join/#tiers">See all three tiers →</a></p>
   </section>
 
   <div class="wrap"><svg class="rule" viewBox="0 0 1440 10" aria-hidden="true"><use href="#ruleline"/></svg></div>
@@ -255,7 +247,7 @@ FINISH  unreviewed and undocumented is unfinished; this build ends with the
         <li><b>Front desk</b><span><a href="tel:+15855550142">(585) 555-0142</a></span></li>
       </ul>
     </div>
-    <p class="note">The café opens at 6:15 AM and showers come with any session. <a class="curl" href="visit/">Hours, parking and directions →</a></p>
+    <p class="note">The café opens at 6:15 AM and showers come with any session. <a class="curl" href="../../visit/">Hours, parking and directions →</a></p>
   </section>
 
   <section class="wrap">
@@ -266,7 +258,7 @@ FINISH  unreviewed and undocumented is unfinished; this build ends with the
       </div>
       <div class="acts">
         <a class="btn chalkline" data-booking href="#booking-note">Book a court</a>
-        <a class="btn chalkline" href="join/#start">Create an account</a>
+        <a class="btn chalkline" href="../../join/#start">Create an account</a>
       </div>
     </div>
 
@@ -280,16 +272,19 @@ FINISH  unreviewed and undocumented is unfinished; this build ends with the
   <footer class="wrap">
     <p>PinkSun is a fictional facility built as a design concept. The mark and the pink and yellow chalk come from a screen-print proof: pink PMS 806 and yellow PMS 803 on white. No real courts, no real bookings, no real money.</p>
     <nav>
-      <a href="play/">Play</a>
-      <a href="join/">Join</a>
-      <a href="visit/">Visit</a>
-      <a href="faq/">FAQ</a>
+      <a href="../../play/">Play</a>
+      <a href="../../join/">Join</a>
+      <a href="../../visit/">Visit</a>
+      <a href="../../faq/">FAQ</a>
       <a href="https://dpsoccerdude101.github.io/" target="_blank" rel="noopener">More by Dennis</a>
+      <a href="../../">Board</a>
+      <a href="../../v/crayon/">Crayon</a>
+      <a href="../../v/notebook/">Notebook</a>
     </nav>
     <p class="fine">Indoor pickleball · Fairport, NY &nbsp;·&nbsp; Mon to Fri 6a–11p &nbsp;·&nbsp; Sat and Sun 7a–9p</p>
   </footer>
 </main>
 
-<script src="assets/booking.js"></script>
+<script src="../../assets/booking.js"></script>
 </body>
 </html>

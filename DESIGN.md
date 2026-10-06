@@ -1,0 +1,136 @@
+# DESIGN.md — PinkSun
+
+The durable visual system, recorded from the built world rather than from intention.
+Product truth lives in PRODUCT.md and does not change here.
+
+## The world in one line
+
+A hand-made club: a chalked sign-in board, a kid's crayon drawing taped to the wall, and the
+sign-up sheet on the clipboard. Three materials, one offer, one funnel.
+
+## Color strategy
+
+**Committed**, per world: one ground owns the whole surface and the brand inks sit on it as
+material, not as accents scattered over a neutral page.
+
+Three registered palettes, one per world. A world never borrows another world's ground.
+
+### World A — board (the flagship, at `/`)
+| Token | Value | Role |
+|---|---|---|
+| `--board` | `#242C28` | slate green-black chalkboard, the whole surface |
+| `--board-deep` | `#1A211E` | the action bar and the close block |
+| `--board-lift` | `#2E3833` | raised patches: facts, the visit notice |
+| `--chalk` | `#F3F6F1` | chalk, warm-tinted so it sits on slate rather than glares |
+| `--chalk-body` | `rgba(243,246,241,.80)` | body copy, 8.6:1 on the board |
+| `--chalk-dim` | `rgba(243,246,241,.62)` | small data text, 5.3:1 |
+| `--rule` | `rgba(243,246,241,.22)` | hairlines only, never text |
+| `--pink-solid` | `#FF3D9A` | the proof's ink exactly, for fills and the primary action |
+| `--pink` | `#FF5AA7` | the same ink lifted for legibility as chalk on slate |
+| `--yellow` | `#FFE800` | emphasis, prices, focus rings |
+
+### World B — crayon (`/v/crayon/`)
+Ground `#245FAE` construction-paper blue, wax `#F7F3E6`, crayon pink `#FF6FB2`, crayon yellow
+`#FFE800`, masking tape `rgba(255,246,206,.74)`.
+
+### World C — notebook (`/v/notebook/`)
+Paper `#FCFCFA`, ballpoint `#1B2A4A`, marker pink `#D6216B` (one step deeper than the proof so
+it holds on white), highlighter `#FFE23D`, amber marker `#E8A800` standing in for the yellow
+ink where pure `#FFE800` would fail on paper, margin rule `#D8232A`.
+
+## The two registries (the rule that holds all three worlds together)
+
+1. **WORLD** — ground, material, dividers, doodles, headings. Hand-drawn, hand-lettered,
+   deliberately imperfect.
+2. **DATA** — every time, price, spot count and address, always set in **Archivo**, never
+   hand-lettered. A player reads a time in bad light, in a car, in February.
+
+The split is a design commitment from the brief, not an accident of implementation. If a
+future change makes a price hand-lettered, that change is wrong.
+
+## Type
+
+Self-hosted, three files, 77 KB total (`build/fonts.py`).
+
+| Face | Role | Why |
+|---|---|---|
+| Gloria Hallelujah | headings, buttons, the mark script | Its uneven baseline and rounded terminals read as a marker held by a hand. |
+| Patrick Hand | body copy, prose | Legible hand-lettering at paragraph length, where Gloria would fatigue. |
+| Archivo | all data | Neutral, self-hosted, not a training-default display face. |
+
+Archivo ships as one variable file serving weights 400 to 700. The build script dedupes by
+content hash; declaring three weights shipped the same 35 KB file three times.
+
+## Materials, and how they are made
+
+Materials are real SVG turbulence, not a flat imitation.
+
+- **Chalk (A)** — `#chalk` filter: `feTurbulence` displaces the edge for brittleness, coarse
+  fractal noise multiplied by fine tooth punches the stroke full of holes, then
+  `feComponentTransfer` restores density and a 0.7 px blur adds dust, and a white
+  turbulence overlay lays powder over the pigment so the colour reads matte. An early
+  version used a dilated blurred halo and read as neon glow; blur is not chalk.
+- **Wax (B)** — anisotropic turbulence (`0.02 0.42`) drags the displacement along one axis so
+  strokes streak the way a crayon does, with the paper's tooth showing through.
+- **Ballpoint (C)** — a small 2.6 px displacement for a nervous but even line, near-opaque.
+  Colour is laid in afterwards as a second stroke inside the ink outline, the way a child
+  fills a drawing in, so the outlines stay visible at every weight.
+- **Board ground** — layered radial gradients as wipe marks, a `repeating-linear-gradient` for
+  the streaks a board dries in, and a fixed turbulence tile at 13% for slate grain. At phone
+  size the strokes alone cannot carry "chalk", so the ground has to.
+- **Tape (B)** — a translucent warm sheen, a torn-edge `clip-path`, and a soft shadow. A plain
+  rectangle reads as a vector placeholder, not tape.
+
+## Composition
+
+- **A** — asymmetric hero: copy left, the mark right. Poster pacing, hand-drawn dividers
+  between sections.
+- **B** — centred and taped up, like a sheet on a wall, with the hero art pinned.
+- **C** — the paper's own rules and red margin are the dividers; the sheet needs no drawn
+  rules at all, and prose is set on the rule pitch rather than scattered across it.
+
+## Components
+
+- `.btn.go` — the one loud action: pink fill, crisp 3px radius, soft shadow. Deliberately
+  rectangular. A button is a booking affordance, so it stays plainly readable while the world
+  around it is hand-drawn.
+- `.btn.chalkline` — outlined secondary, same geometry.
+- `.curl` — an in-prose action, 44 px tall hit area, underlined with a real
+  `text-decoration` rather than a coloured box-shadow stripe (a stripe on one edge is a
+  recognisable generated-UI tell).
+- `.rule` — one authored hand-drawn divider path, stretched to width, generated once and
+  shared. World C renders it as a spacer.
+- `.actionbar` — the single persistent action. Fixed at the thumb on a phone, returned to the
+  header row at 1024 px by CSS alone, so there is exactly one such element in the DOM.
+- `.close` — the reserve block closing every page.
+
+## Depth, motion, states
+
+- No hard zero-blur offset shadows. Shadows carry an offset and a soft blur, or they are not
+  used. Depth is smudge and dust, not a coloured edge.
+- Motion is one authored moment: the marquee is gone, and what remains is a 1 px press
+  response and a 120 ms hover lift. `prefers-reduced-motion` removes all of it.
+- Themed browser surfaces: selection, focus rings (dashed brand yellow), caret, and thin
+  scrollbars on the board.
+- States designed: hover, active, focus-visible, `disabled` on the reserve button in world A's
+  earlier build, and the three availability states (open, low, gone) in the schedule.
+
+## Responsive
+
+Mobile-first. Base rules are written for a 390 px phone in one hand; widening happens in
+`min-width: 640px` and `min-width: 1024px` blocks. `env(safe-area-inset-bottom)` is respected on
+the fixed bar, and `body` reserves `94 px` beneath it so the bar never covers the footer.
+
+## Bans held
+
+No eyebrow or kicker above a heading. No section numbers. No hard offset shadows. No
+card-with-icon-and-text grids. No gradient text. No glassmorphism. No coloured side stripe on
+cards. No emoji or unicode glyph standing in for an icon: the sun, the arrow and the dividers
+are authored SVG. No monospace costume; Archivo carries the data.
+
+## Open items
+
+- Worlds B and C exist to be chosen between, not to ship together. Only one should survive.
+- `/play/`, `/join/`, `/visit/` and `/faq/` are still the previous poster world. They need the
+  chosen world's tokens before the site is coherent.
+- The booking platform URL is still unset (`assets/booking.js`, one line).

@@ -55,9 +55,9 @@ def main():
                   navcta: document.querySelectorAll('[data-cta="nav"]').length,
                   booking: [...document.querySelectorAll('[data-booking]')].map(a => a.getAttribute('href')),
                   deepLinks: document.querySelectorAll('[data-booking-path]').length,
-                  reserve: document.querySelectorAll('.reserve').length,
+                  reserve: document.querySelectorAll('.reserve, .close').length,   // one closing decision block, whatever the world calls it
                   crumbs: document.querySelectorAll('.crumbs').length,
-                  navLabels: [...document.querySelectorAll('.bar nav > a:not([data-booking])')].map(a => a.textContent.trim()),
+                  navLabels: [...document.querySelectorAll('.bar nav > a:not([data-booking]), .actionbar .bar-links a')].map(a => a.textContent.trim()),
                   current: document.querySelectorAll('.bar nav a[aria-current="page"]').length,
                   docH: document.documentElement.scrollHeight,
                   stylesheets: [...document.querySelectorAll('link[rel=stylesheet]')].map(l => l.getAttribute('href')),

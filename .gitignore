@@ -1,0 +1,3 @@
+# review screenshots are evidence for the design pass, not site content
+.impeccable/review/*.png
+.impeccable/mocks/
