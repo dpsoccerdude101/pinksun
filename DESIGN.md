@@ -61,6 +61,28 @@ Self-hosted, three files, 77 KB total (`build/fonts.py`).
 Archivo ships as one variable file serving weights 400 to 700. The build script dedupes by
 content hash; declaring three weights shipped the same 35 KB file three times.
 
+## The mark
+
+The logo is the t-shirt proof's mark, and it stays the same mark in every world. Only the
+material changes.
+
+- **12 rays**, alternating pink and yellow, leftmost pink
+- rays are **straight with flat ends** (butt caps), about 1:1 against the gap as judged mid-fan
+- a **solid pink semicircle dome**, flat base, **no outline**
+- a clear gap between the dome edge and the inner end of every ray
+- the script sits under the dome and is **wider than the sun** (measured 1.44x; the proof runs
+  1.43 to 1.67)
+- the script is **two-tone**: pink in pink, sun in yellow
+- **no outlines anywhere**, because the proof has none
+
+Generated from `build/logo.py`, so the geometry has one source of truth across all three worlds.
+Each world roughens the edge with its own material filter; none of them adds structure.
+
+One deliberate translation: the proof's yellow ink is unreadable on paper (about 1.1:1), so the
+notebook world carries it as a deep amber marker. The board and crayon worlds keep the proof's
+`#FFE800` exactly. If the yellow has to be exact everywhere, the notebook world is the wrong
+world for it, not the wrong yellow.
+
 ## Materials, and how they are made
 
 Materials are real SVG turbulence, not a flat imitation.
@@ -131,6 +153,9 @@ are authored SVG. No monospace costume; Archivo carries the data.
 ## Open items
 
 - Worlds B and C exist to be chosen between, not to ship together. Only one should survive.
+- The mark's rays read as chalk, wax and pen rather than crisp vector lines. That is the worlds
+  doing their job. If a crisp mark is ever wanted, the filter comes off the mark element only,
+  not off the world.
 - `/play/`, `/join/`, `/visit/` and `/faq/` are still the previous poster world. They need the
   chosen world's tokens before the site is coherent.
 - The booking platform URL is still unset (`assets/booking.js`, one line).

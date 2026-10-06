@@ -11,14 +11,13 @@
   --paper:#FCFCFA;
   --ink:#1B2A4A;               /* ballpoint blue-black */
   --ink-body:rgba(27,42,74,.86);
-  --ink-dim:rgba(27,42,74,.62);
+  --ink-dim:rgba(27,42,74,.70);
   --ruleline:#DCE7F2;
   --margin:#D8232A;
 
   --pink:#D6216B;              /* marker, one step deeper than PMS 806 so it holds on white */
   --pink-solid:#FF3D9A;
   --yellow:#FFE23D;            /* highlighter */
-  --marker-y:#E8A800;
 
   --hand:"Gloria Hallelujah","Comic Sans MS",cursive;
   --hand-body:"Patrick Hand","Comic Sans MS",cursive;
@@ -92,7 +91,7 @@ a{color:inherit}
   transition:transform .12s ease,filter .16s ease;
 }
 .btn:active{transform:translateY(1px)}
-.btn.go{background:var(--pink-solid);color:#2B0014;border-color:var(--ink);box-shadow:0 4px 0 rgba(27,42,74,.35)}
+.btn.go{background:var(--pink-solid);color:#2B0014;border-color:var(--ink);box-shadow:0 3px 10px rgba(27,42,74,.30)}
 .btn.go:hover{filter:brightness(1.05)}
 .btn.chalkline{background:transparent;color:var(--ink)}
 .btn.chalkline:hover{background:var(--yellow)}
@@ -169,15 +168,15 @@ h2 .sm{display:block;font-family:var(--hand-body);font-size:17px;color:var(--ink
 
 /* ---------- close ---------- */
 .close{margin:4px 0 0;padding:22px 16px;background:#fff;border:2px solid var(--ink);border-radius:3px;
-  box-shadow:0 6px 0 rgba(27,42,74,.22)}
+  box-shadow:0 6px 18px rgba(27,42,74,.20)}
 .close h2{font-size:clamp(23px,7.4vw,30px)}
 .close p{margin:11px 0 16px;font-size:17px;color:var(--ink-body)}
 .close .acts{display:flex;flex-direction:column;gap:10px}
 
 footer{margin-top:22px;padding:20px 0 6px;border-top:2px solid var(--ink)}
 footer p{font-size:15px;color:var(--ink-dim);max-width:48ch;line-height:1.6;margin:0 0 12px}
-footer nav{display:flex;flex-wrap:wrap;gap:6px 18px;margin-bottom:14px}
-footer nav a{display:inline-flex;align-items:center;min-height:44px;font-family:var(--hand);font-size:16px;
+footer nav{display:flex;flex-wrap:wrap;gap:6px 6px;margin-bottom:12px}
+footer nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 10px;font-family:var(--hand);font-size:16px;
   color:var(--ink-body);text-decoration:none}
 footer nav a:hover{color:var(--pink)}
 footer .fine{font-family:var(--data);font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-dim);line-height:1.7}
@@ -187,6 +186,34 @@ footer .fine{font-family:var(--data);font-size:11.5px;letter-spacing:.05em;text-
 #booking-note strong{font-family:var(--hand);color:var(--pink);font-weight:400;display:block;margin-bottom:7px;font-size:18px}
 #booking-note code{font-family:var(--data);font-size:13px;color:var(--ink)}
 #booking-note .btn{margin-top:14px}
+
+
+/* F6: numerals in tabular data line up */
+.slot .t,.spots,.when,.play .price,.fact b,.strip .who b{font-variant-numeric:tabular-nums}
+
+/* F7: one authored moment. The sun lands, then the script is written. */
+@keyframes drawsun{from{opacity:0;transform:scale(.94) rotate(-1.4deg)}to{opacity:1;transform:none}}
+@keyframes writeit{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.hero-art .sun{animation:drawsun .6s cubic-bezier(.2,.8,.2,1) both}
+.hero-art .scribble{animation:writeit .72s cubic-bezier(.3,.9,.2,1) .2s both}
+
+/* F5: the funnel links inside prose are real 44px targets */
+.also a,.notice a{display:inline-flex;align-items:center;min-height:44px}
+.arw{width:20px;height:7px;flex:none;display:inline-block;vertical-align:middle}
+
+
+/* the shirt's proportion: the script is wider than the sun it sits under,
+   so the column is not clamped and the sun is sized instead */
+.hero-art{max-width:none}
+.hero-art .sun{max-width:196px;margin:0 auto}
+.hero-art .scribble{display:block;text-align:center;margin-top:2px;line-height:1.05;
+  font-size:clamp(34px,19vw,80px);white-space:nowrap;font-style:normal}
+.hero-art .scribble i{font-style:normal}
+.hero-art .scribble .py{color:var(--pink)}
+.hero-art .scribble .sy{color:var(--yellow)}
+
+/* the shirt's yellow is unreadable on paper, so this world carries it as amber */
+.hero-art .scribble .sy{color:#C87A00}
 
 @media (min-width:640px){
   .wrap{padding-left:56px}
@@ -199,7 +226,8 @@ footer .fine{font-family:var(--data);font-size:11.5px;letter-spacing:.05em;text-
   .btn.wide{width:auto}
   .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center}
   .hero-copy{order:1}
-  .hero-art{order:2;max-width:420px;margin-left:auto;width:100%}
+  .hero-art{order:2;width:100%}
+  .hero-art .sun{max-width:250px}
 }
 
 @media (min-width:1024px){
@@ -219,7 +247,7 @@ footer .fine{font-family:var(--data);font-size:11.5px;letter-spacing:.05em;text-
   .actionbar .bar-links a:hover{color:var(--pink)}
   h1{font-size:clamp(44px,4.2vw,58px)}
   .lede{font-size:21px;max-width:32ch}
-  .hero .hero-art{max-width:460px}
+  .hero-art .sun{max-width:320px}
   h2{font-size:clamp(29px,2.5vw,38px)}
   .play h3{font-size:26px}
   .play p{font-size:17.5px}

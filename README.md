@@ -1,6 +1,6 @@
 # PinkSun — concept site
 
-A fictional indoor pickleball club in Fairport, New York, built as a design concept.
+A fictional indoor pickleball club in Wren Hollow, New York, built as a design concept.
 
 The mark and the colorway come from a screen-print proof: pink **PMS 806** (`#FF3D9A`),
 yellow **PMS 803** (`#FFE800`), printed on white.
@@ -86,6 +86,6 @@ the local price band runs $12 drop-in, $65 to $100 monthly, and $40 to $45 an ho
 court. Do not drive to 240 Sunfield Way.
 
 Research behind the information architecture, including the sitemap and CTA audit of the
-real comparables (Fairport Pickleball Club, Dinkers, ROC City, Pickleball Kingdom, Dill
+real comparables (Wren Hollow Pickleball Club, Dinkers, ROC City, Pickleball Kingdom, Dill
 Dinkers, Ace), is in [`design/`](design/): the build plan in `design/plan.md`, the findings
 summary in `design/research-notes.md`, and the raw captures in `design/research/`.

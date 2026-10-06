@@ -4,7 +4,7 @@ Product truth only. DESIGN.md owns the visual system; this file does not change 
 
 ## What this is
 
-PinkSun is a **fictional** indoor pickleball club in Fairport, New York, built as a design
+PinkSun is a **fictional** indoor pickleball club in Wren Hollow, New York, built as a design
 concept. Six courts. It exists to demonstrate what a dedicated court club's website could be.
 
 ## Audience

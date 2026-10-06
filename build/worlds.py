@@ -38,12 +38,19 @@ CRAYON_DEFS = '''<svg width="0" height="0" aria-hidden="true" focusable="false" 
       <feMerge><feMergeNode in="softedge"/><feMergeNode in="dense"/></feMerge>
     </filter>
 
-    <symbol id="sun" viewBox="0 0 200 112">
-      <g stroke-linecap="round" fill="none">
-{{RAYS_CRAYON}}
-      </g>
-      <path d="M57,104 C58,75 76,60 100,60 C124,60 143,76 144,104 Z" fill="#FF3D9A"/>
-    </symbol>
+{{SUN_CRAYON}}
+
+    <!-- the mark keeps its shape: same wax streaks, a third of the displacement -->
+    <filter id="chalkmark" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.03 0.5" numOctaves="2" seed="6" result="e"/>
+      <feDisplacementMap in="SourceGraphic" in2="e" scale="3.4" xChannelSelector="R" yChannelSelector="G" result="rough"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.04 0.45" numOctaves="2" seed="13" result="wax"/>
+      <feColorMatrix in="wax" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.9 0 0 0 0.12" result="waxA"/>
+      <feComposite in="rough" in2="waxA" operator="in" result="waxy"/>
+      <feComponentTransfer in="waxy" result="dense"><feFuncA type="linear" slope="1.5"/></feComponentTransfer>
+      <feGaussianBlur in="dense" stdDeviation="0.5" result="soft"/>
+      <feMerge><feMergeNode in="soft"/><feMergeNode in="dense"/></feMerge>
+    </filter>
 
     <symbol id="ruleline" viewBox="0 0 1440 12" preserveAspectRatio="none">
       <path d="M0,6.2 L110,4.1 L230,7.4 L350,3.6 L470,7.9 L590,4.8 L710,8.1 L830,4.2 L950,7.6 L1070,4.4 L1180,8.3 L1300,5.1 L1440,7.2"
@@ -72,16 +79,11 @@ NOTEBOOK_DEFS = '''<svg width="0" height="0" aria-hidden="true" focusable="false
       <feColorMatrix in="t" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.05 0 0 0 0.32" result="tA"/>
       <feComposite in="rough" in2="tA" operator="in"/>
     </filter>
-    <pattern id="hatch" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(-38)">
-      <line x1="0" y1="0" x2="0" y2="8" stroke="#D6216B" stroke-width="3.6"/>
+    <pattern id="hatch" patternUnits="userSpaceOnUse" width="10" height="10" patternTransform="rotate(-38)">
+      <line x1="0" y1="0" x2="0" y2="10" stroke="#D6216B" stroke-width="1.5"/>
     </pattern>
 
-    <symbol id="sun" viewBox="0 0 200 112">
-      <g fill="none" stroke-linejoin="round">
-{{RAYS_NOTEBOOK}}
-      </g>
-      <path d="M57,104 C58,75 76,60 100,60 C124,60 143,76 144,104 Z" fill="url(#hatch)" stroke="#1B2A4A" stroke-width="3"/>
-    </symbol>
+{{SUN_NOTEBOOK}}
 
     <symbol id="ruleline" viewBox="0 0 1440 12" preserveAspectRatio="none">
       <path d="M0,6 L1440,6" fill="none" stroke="currentColor" stroke-width="1"/>
@@ -98,26 +100,13 @@ NOTEBOOK_DEFS = '''<svg width="0" height="0" aria-hidden="true" focusable="false
 
 '''
 
-# the same ray geometry, per world's presentation
-RAYS = [(50.0,105.8,25.0,110.1,-0.4,107.6,10.6),(51.9,90.3,30.0,86.4,9.4,78.2,11.1),
-        (57.8,77.3,36.2,67.6,18.2,52.2,10.8),(64.0,69.3,49.8,51.9,31.9,38.3,11.2),
-        (76.6,59.8,62.8,39.6,53.9,16.8,11.7),(85.2,56.3,81.6,34.3,72.1,14.2,12.3),
-        (100.9,54.0,104.1,28.7,101.8,3.3,10.9),(113.0,55.7,116.5,31.4,125.7,8.7,10.9),
-        (126.2,61.4,134.8,41.1,148.9,24.3,11.6),(136.6,69.9,154.8,56.7,169.3,39.4,12.1),
-        (143.7,79.6,163.9,70.8,182.1,58.1,12.2),(148.3,91.2,168.4,84.0,189.3,80.4,11.9),
-        (150.0,102.6,171.2,99.3,192.6,101.5,12.3)]
+# the mark comes from build/logo.py, so all three worlds draw the same logo
+import logo
 
-crayon_rays, nb_rays = [], []
-for i,(x1,y1,qx,qy,x2,y2,w) in enumerate(RAYS):
-    d = f"M{x1},{y1} Q{qx},{qy} {x2},{y2}"
-    if i % 2 == 0:
-        crayon_rays.append(f'        <path d="{d}" stroke="#FF6FB2" stroke-width="{w:.1f}"/>')
-        nb_rays.append(f'        <path d="{d}" stroke="#1B2A4A" stroke-width="{w+6:.1f}"/>\n'
-                       f'        <path d="{d}" stroke="#D6216B" stroke-width="{w:.1f}"/>')
-    else:
-        crayon_rays.append(f'        <path d="{d}" stroke="#FFE800" stroke-width="{w:.1f}"/>')
-        nb_rays.append(f'        <path d="{d}" stroke="#1B2A4A" stroke-width="{w+6:.1f}"/>\n'
-                       f'        <path d="{d}" stroke="#E8A800" stroke-width="{w:.1f}"/>')
+SUN_CRAYON = logo.sun_symbol(color_a="#FF8FC5", color_b="#FFE800", dome_fill="#FF3D9A")
+# no outlines: the shirt's mark has none. Yellow ink is illegible on paper, so the
+# paper world carries the proof's yellow as a deep amber marker.
+SUN_NOTEBOOK = logo.sun_symbol(color_a="#D6216B", color_b="#C87A00", dome_fill="#FF3D9A")
 
 CRAYON_CONTRACT = '''<!--
 THESIS  The drawing a kid pins to the gym wall. Same club, same offer, told in
@@ -165,30 +154,26 @@ def rewrite(page_html, defs, contract, world_css, depth, world_name):
         # prefix match so anchor links like join/#start are rewritten too
         out = out.replace(f'href="{seg}', f'href="{depth}{seg}')
     out = out.replace('href="./"', f'href="{depth}"')
+    for seg in ("v/crayon/", "v/notebook/"):
+        out = out.replace(f'href="{seg}"', f'href="{depth}{seg}"')
+    if world_css == "crayon.css":
+        # the mark uses the gentler pass so its rays survive the wax
+        out = out.replace('filter="url(#chalk)"', 'filter="url(#chalkmark)"')
     theme = {"crayon.css": "#245FAE", "notebook.css": "#FCFCFA"}.get(world_css)
     if theme:
         out = out.replace('<meta name="theme-color" content="#242C28">',
                           f'<meta name="theme-color" content="{theme}">')
-    out = out.replace('<link rel="icon" href="data:', '<link rel="icon" href="data:')  # unchanged
-    # a way back to the other worlds for comparison
-    out = out.replace(
-        '      <a href="https://dpsoccerdude101.github.io/" target="_blank" rel="noopener">More by Dennis</a>',
-        '      <a href="https://dpsoccerdude101.github.io/" target="_blank" rel="noopener">More by Dennis</a>\n'
-        f'      <a href="{depth}">Board</a>\n'
-        f'      <a href="{depth}v/crayon/">Crayon</a>\n'
-        f'      <a href="{depth}v/notebook/">Notebook</a>'
-    )
     return out
 
 
 for slug, defs, contract, css in (
-    ("crayon", CRAYON_DEFS.replace("{{RAYS_CRAYON}}", "\n".join(crayon_rays)), CRAYON_CONTRACT, "crayon.css"),
-    ("notebook", NOTEBOOK_DEFS.replace("{{RAYS_NOTEBOOK}}", "\n".join(nb_rays)), NOTEBOOK_CONTRACT, "notebook.css"),
+    ("crayon", CRAYON_DEFS.replace("{{SUN_CRAYON}}", SUN_CRAYON), CRAYON_CONTRACT, "crayon.css"),
+    ("notebook", NOTEBOOK_DEFS.replace("{{SUN_NOTEBOOK}}", SUN_NOTEBOOK), NOTEBOOK_CONTRACT, "notebook.css"),
 ):
     d = os.path.join(ROOT, "v", slug)
     os.makedirs(d, exist_ok=True)
     page = rewrite(html, defs, contract, css, "../../", slug)
-    assert "{{RAYS" not in page, "unsubstituted ray placeholder"
+    assert "{{SUN" not in page, "unsubstituted mark placeholder"
     assert 'chalk.css' not in page, "world A stylesheet leaked into " + slug
     open(os.path.join(d, "index.html"), "w").write(page)
     print(f"wrote v/{slug}/index.html  ({len(page)} bytes)")

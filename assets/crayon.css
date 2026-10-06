@@ -9,16 +9,17 @@
    ========================================================================== */
 
 :root{
-  --paper:#245FAE;          /* construction-paper blue, saturated on purpose */
-  --paper-deep:#1C4C8D;
-  --paper-lift:#2C6BC0;
+  /* darkened so white wax and small dim labels clear 4.5:1 in bad light */
+  --paper:#1E4F92;          /* construction-paper blue, saturated on purpose */
+  --paper-deep:#163C73;
+  --paper-inset:#1A4478;
 
   --wax:#F7F3E6;            /* white crayon */
-  --wax-body:rgba(247,243,230,.84);
-  --wax-dim:rgba(247,243,230,.66);
+  --wax-body:rgba(247,243,230,.90);
+  --wax-dim:rgba(247,243,230,.80);
   --rule:rgba(247,243,230,.30);
 
-  --pink:#FF6FB2;
+  --pink:#FF8FC5;           /* large text only; #FF6FB2 failed 3:1 on the ground */
   --pink-solid:#FF3D9A;
   --yellow:#FFE800;
   --tape:rgba(255,246,206,.74);
@@ -111,7 +112,6 @@ a{color:inherit}
   /* torn ends, not a cut rectangle */
   clip-path:polygon(3% 4%, 22% 0, 46% 5%, 71% 1%, 96% 6%, 100% 30%, 97% 57%, 100% 84%, 94% 98%, 68% 94%, 44% 99%, 19% 95%, 2% 99%, 0 71%, 4% 42%, 0 19%);
   box-shadow:0 4px 10px rgba(0,0,0,.34);
-  backdrop-filter:blur(.4px);
 }
 .hero-art::before{top:-11px;left:-16px;transform:rotate(-19deg)}
 .hero-art::after{top:-11px;right:-16px;transform:rotate(15deg)}
@@ -164,12 +164,12 @@ h2 .sm{display:block;font-family:var(--hand-body);font-size:17px;color:var(--wax
 
 /* ---------- facts ---------- */
 .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px}
-.fact{padding:15px 13px 13px;background:var(--paper-lift);border-radius:3px;box-shadow:0 4px 14px rgba(0,0,0,.22)}
+.fact{padding:15px 13px 13px;background:var(--paper-inset);border-radius:3px;box-shadow:0 4px 14px rgba(0,0,0,.26)}
 .fact b{display:block;font-family:var(--data);font-weight:700;font-size:26px;line-height:1;color:var(--yellow)}
 .fact span{display:block;margin-top:7px;font-size:15.5px;color:var(--wax-body)}
 
 /* ---------- notice ---------- */
-.notice{position:relative;margin-top:18px;padding:22px 16px 18px;background:var(--paper-lift);
+.notice{position:relative;margin-top:18px;padding:22px 16px 18px;background:var(--paper-inset);
   border-radius:3px;box-shadow:0 6px 18px rgba(0,0,0,.24)}
 .notice::before{content:"";position:absolute;top:-9px;left:50%;margin-left:-30px;width:60px;height:17px;
   background:var(--tape);transform:rotate(-2.5deg);box-shadow:0 3px 8px rgba(0,0,0,.3)}
@@ -190,8 +190,8 @@ h2 .sm{display:block;font-family:var(--hand-body);font-size:17px;color:var(--wax
 
 footer{margin-top:24px;padding:22px 0 6px;box-shadow:inset 0 1px 0 var(--rule)}
 footer p{font-size:15px;color:var(--wax-dim);max-width:48ch;line-height:1.6;margin:0 0 14px}
-footer nav{display:flex;flex-wrap:wrap;gap:6px 18px;margin-bottom:16px}
-footer nav a{display:inline-flex;align-items:center;min-height:44px;font-family:var(--hand);font-size:16px;
+footer nav{display:flex;flex-wrap:wrap;gap:6px 6px;margin-bottom:12px}
+footer nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 10px;font-family:var(--hand);font-size:16px;
   color:var(--wax-body);text-decoration:none}
 footer nav a:hover{color:var(--yellow)}
 footer .fine{font-family:var(--data);font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--wax-dim);line-height:1.7}
@@ -203,9 +203,35 @@ footer .fine{font-family:var(--data);font-size:11.5px;letter-spacing:.05em;text-
 #booking-note code{font-family:var(--data);font-size:13px;color:var(--wax)}
 #booking-note .btn{margin-top:14px}
 
+
+/* F6: numerals in tabular data line up */
+.slot .t,.spots,.when,.play .price,.fact b,.strip .who b{font-variant-numeric:tabular-nums}
+
+/* F7: one authored moment. The sun lands, then the script is written. */
+@keyframes drawsun{from{opacity:0;transform:scale(.94) rotate(-1.4deg)}to{opacity:1;transform:none}}
+@keyframes writeit{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.hero-art .sun{animation:drawsun .6s cubic-bezier(.2,.8,.2,1) both}
+.hero-art .scribble{animation:writeit .72s cubic-bezier(.3,.9,.2,1) .2s both}
+
+/* F5: the funnel links inside prose are real 44px targets */
+.also a,.notice a{display:inline-flex;align-items:center;min-height:44px}
+.arw{width:20px;height:7px;flex:none;display:inline-block;vertical-align:middle}
+
+
+/* the shirt's proportion: the script is wider than the sun it sits under,
+   so the column is not clamped and the sun is sized instead */
+.hero-art{max-width:none}
+.hero-art .sun{max-width:196px;margin:0 auto}
+.hero-art .scribble{display:block;text-align:center;margin-top:2px;line-height:1.05;
+  font-size:clamp(34px,19vw,80px);white-space:nowrap;font-style:normal}
+.hero-art .scribble i{font-style:normal}
+.hero-art .scribble .py{color:var(--pink)}
+.hero-art .scribble .sy{color:var(--yellow)}
+
 @media (min-width:640px){
   :root{--pad:26px}
-  .hero .hero-art{max-width:400px}
+  .hero-art{order:2;width:100%}
+  .hero-art .sun{max-width:250px}
   .facts{grid-template-columns:repeat(4,1fr)}
   .slot{grid-template-columns:92px 1fr auto}
   .close{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:26px 22px}
@@ -229,7 +255,7 @@ footer .fine{font-family:var(--data);font-size:11.5px;letter-spacing:.05em;text-
   .actionbar .bar-links a:hover{color:var(--yellow)}
   h1{font-size:clamp(46px,4.4vw,62px)}
   .lede{font-size:21px;max-width:30ch}
-  .hero .hero-art{max-width:480px}
+  .hero-art .sun{max-width:320px}
   h2{font-size:clamp(29px,2.5vw,39px)}
   .play h3{font-size:26px}
   .play p{font-size:17.5px}
