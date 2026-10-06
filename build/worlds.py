@@ -159,6 +159,11 @@ def rewrite(page_html, defs, contract, world_css, depth, world_name):
     if world_css == "crayon.css":
         # the mark uses the gentler pass so its rays survive the wax
         out = out.replace('filter="url(#chalk)"', 'filter="url(#chalkmark)"')
+    # the mark's label describes this world's material, not the board's
+    ARIA = {"crayon.css": "A pink sun with rays drawn by hand in pink and yellow crayon",
+            "notebook.css": "A pink sun drawn in ballpoint and coloured in with marker"}
+    if world_css in ARIA:
+        out = out.replace("A pink sun with rays drawn by hand in pink and yellow chalk", ARIA[world_css])
     theme = {"crayon.css": "#245FAE", "notebook.css": "#FCFCFA"}.get(world_css)
     if theme:
         out = out.replace('<meta name="theme-color" content="#242C28">',
