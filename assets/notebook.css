@@ -85,7 +85,7 @@ a{color:inherit}
 .actionbar{
   position:fixed;left:0;right:0;bottom:0;z-index:50;
   display:flex;gap:10px;align-items:center;
-  padding:11px 14px calc(11px + env(safe-area-inset-bottom,0px));
+  padding:11px var(--pad) calc(11px + env(safe-area-inset-bottom,0px)) var(--indent);
   background:#fff;
   border-top:1px solid rgba(27,42,74,.30);
   box-shadow:0 -6px 14px rgba(27,42,74,.10);
