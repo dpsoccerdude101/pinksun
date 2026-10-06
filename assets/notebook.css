@@ -103,7 +103,12 @@ a{color:inherit}
 .btn svg{width:22px;height:20px;flex:none;color:currentColor}
 
 /* ---------- hero ---------- */
-.hero{padding:2px 0 24px}
+/* Vertical only. The hero is also a .wrap, and a padding shorthand here lands
+   after .wrap in the cascade, wiping the wrap's own left/right padding: the hero
+   ran full bleed, its text flush to the screen edge while every other section sat
+   in the notebook's indented writing column, and its art centred on the raw
+   viewport instead of that column. */
+.hero{padding-top:2px;padding-bottom:24px}
 .hero-art{position:relative;margin:0 0 2px;max-width:330px}
 .hero-art svg.sun{width:100%;height:auto;display:block}
 .hero-art .scribble{display:block;margin-top:-2px;font-family:var(--hand);
