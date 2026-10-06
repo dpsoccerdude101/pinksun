@@ -121,13 +121,12 @@ Materials are real SVG turbulence, not a flat imitation.
 
 ## Hierarchy
 
-One path, five beats, and nothing said twice.
+One path, four beats, and nothing said twice.
 
 1. **Tonight's board** — what is on now, which is the reason to open a page like this at all.
 2. **What you can book** — a five-row price list, one tap per row, one price each.
-3. **Who we are** — where the name came from, in three sentences.
-4. **Finding us** — address, hours, phone.
-5. **Pick a block and go** — the closing reserve block.
+3. **Finding us** — address, hours, phone.
+4. **Pick a block and go** — the closing reserve block.
 
 Prices appear once (the list), hours once (Finding us), and the closing block repeats nothing the
 hero already said. The previous pass carried five programme cards, each with a paragraph, a
@@ -164,8 +163,6 @@ row as the target instead of a small link inside a card.
   control, so `min-height: 44 px` and one hairline between rows. World C needs no border at all:
   the printed rules are the separators and every line of the row is exactly one `--sheet` tall, so
   the list is written onto the paper's own grid rather than laid over it.
-- `.about` — three short paragraphs, the first one a lede a step up in size. No portrait, no
-  founding-year badge, no stat strip.
 - `.close` — the reserve block closing every page.
 
 ## Depth, motion, states
@@ -201,5 +198,4 @@ are authored SVG. No monospace costume; Archivo carries the data.
 - `/play/`, `/join/`, `/visit/` and `/faq/` are still the previous poster world. They need the
   chosen world's tokens before the site is coherent.
 - The booking platform URL is still unset (`assets/booking.js`, one line).
-- The about copy is invented, like the prices and the schedule. It explains the name from the
-  mark's own world rather than claiming anything about a real business.
+- The prices and the schedule are invented rather than copied from a real business.

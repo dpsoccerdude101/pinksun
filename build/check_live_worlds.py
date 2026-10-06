@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Verify the deployed PinkSun worlds after the hierarchy reshape.
 
-Asserts, per world: the five-row price list, the about section, one price surface,
+Asserts, per world: the five-row price list, one price surface,
 hours in exactly one place, the mark, the town, and no horizontal overflow.
 """
 from playwright.sync_api import sync_playwright
@@ -19,8 +19,6 @@ JS = """() => {
     rows: document.querySelectorAll('.row').length,
     rowNames: [...document.querySelectorAll('.row .nm')].map(e => e.textContent.trim()),
     rowPrices: [...document.querySelectorAll('.row .pr')].map(e => e.textContent.replace(/\\s+/g,' ').trim()),
-    aboutP: document.querySelectorAll('.about p').length,
-    aboutH2: (document.querySelector('#about h2') || {}).textContent || '',
     sections: [...document.querySelectorAll('main > section')].map(e => e.id),
     h2s: [...document.querySelectorAll('h2')].map(e => e.textContent.split('\\n')[0].trim()),
     hoursMentions: (t.match(/Monday to Friday/g) || []).length,
@@ -49,7 +47,7 @@ def main():
             print(f"--- {name}  ({url})")
             print(f"    sections   {d['sections']}")
             print(f"    h2         {d['h2s']}")
-            print(f"    rows={d['rows']} aboutP={d['aboutP']} rays={d['rays']} "
+            print(f"    rows={d['rows']} rays={d['rays']} "
                   f"primary={d['primary']} booking={d['booking']} deep={d['deep']} words={d['words']}")
             print(f"    prices     {d['rowPrices']}")
             print(f"    hours mentions={d['hoursMentions']} free-session mentions={d['freeMentions']} "
@@ -62,11 +60,9 @@ def main():
             want(d["rows"] == 5, f"expected 5 price rows, found {d['rows']}")
             for p in ["$12", "$95", "$45", "$40", "$120"]:
                 want(any(p in x for x in d["rowPrices"]), f"row list is missing {p}")
-            want(d["aboutP"] == 3, f"expected 3 about paragraphs, found {d['aboutP']}")
-            want("who we are" in d["aboutH2"].lower(), "about section has no heading")
-            want([s for s in d["sections"] if s] == ["tonight", "play", "about", "visit"]
-                 and len(d["sections"]) == 6,
-                 f"section order is {d['sections']} (want hero, then the four, then the close)")
+            want([s for s in d["sections"] if s] == ["tonight", "play", "visit"]
+                 and len(d["sections"]) == 5,
+                 f"section order is {d['sections']} (want hero, then the three, then the close)")
             want(d["hoursMentions"] == 1, f"hours appear {d['hoursMentions']} times, want exactly 1")
             want(d["freeMentions"] == 1, f"'first session free' appears {d['freeMentions']} times, want 1")
             want(d["rays"] == 12, f"mark has {d['rays']} rays, want 12")

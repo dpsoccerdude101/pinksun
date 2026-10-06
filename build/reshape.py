@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Simpler hierarchy for the PinkSun landing page, and an about section.
+"""Simpler hierarchy for the PinkSun landing page.
 
 What this changes, and why:
 
@@ -12,8 +12,9 @@ What this changes, and why:
 
 2. "What the place is" (a four-cell stat grid restating numbers the hero and the
    price list already give, plus a membership teaser) is replaced by "Who we are".
-   That adds the about section and removes the page's weakest section in the same
-   edit. Its membership line moves to the price list, which is where pricing lives.
+   Its membership line moves to the price list, which is where pricing lives. The
+   "Who we are" section this added was itself removed from the product afterwards,
+   so the landing page is four beats, not five.
 
 3. Two duplications go: the close block repeated the hero's free-session offer, and
    the footer repeated the visit section's hours verbatim.
@@ -84,15 +85,6 @@ NEW_PLAY = f'''  <section id="play" class="wrap">
   </section>
 '''
 
-NEW_ABOUT = '''  <section id="about" class="wrap">
-    <h2>Who we are<span class="sm">The name came off a fence, and the courts came out of an empty warehouse.</span></h2>
-    <div class="about">
-      <p>The first PinkSun sign was scrap plywood on a fence on Sunfield Way, painted by somebody's kid: a pink sun, and the words underneath it. It stayed up long enough that people started calling those courts the pink sun courts.</p>
-      <p>We were four players sick of taping lines onto a basketball floor and pulling them up again at nine at night. The warehouse turned up two minutes off the village line, empty, with nothing else claiming the floor.</p>
-      <p>So the name stayed and the sign got repainted. We run the place ourselves, the open play, the leagues, the clinics, Saturday mornings for the kids, which means the person at the desk is somebody who plays here.</p>
-    </div>
-  </section>
-'''
 
 # ---------------------------------------------------------------- index.html
 with open(I) as f:
@@ -104,11 +96,6 @@ if m:
 else:
     log.append("skip  price list (already applied)")
 
-m = re.search(r'  <section id="board" class="wrap">.*?\n  </section>\n', html, re.S)
-if m:
-    sub(I, m.group(0), NEW_ABOUT, "'what the place is' becomes 'who we are'")
-else:
-    log.append("skip  about section (already applied)")
 
 sub(I,
     "        <p>Twelve dollars, ninety minutes, paddle included. First session free for a Wren Hollow resident. If it is not for you, you have lost nothing.</p>",
@@ -152,11 +139,9 @@ ROW_CSS_COMMON = '''.row{display:grid;grid-template-columns:1fr auto;grid-templa
 .row:active{transform:translateY(1px)}
 '''
 
-ABOUT_CSS_COMMON = '''.about{margin-top:15px;max-width:60ch}
-.about p{margin:0 0 14px;font-size:17.5px}
-.about p:first-child{font-size:19px}
-.about p:last-child{margin-bottom:0}
-'''
+
+# The 'who we are' section this migration added has since been removed
+# from the product, so there is nothing here to reapply.
 
 # --- world A: chalk on a board
 sub(CK,
@@ -181,15 +166,6 @@ sub(CK,
     ".row:hover .nm,.row:focus-visible .nm{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px}\n",
     "chalk: rows replace the cards")
 
-sub(CK,
-    "/* ---------- facts ---------- */\n"
-    ".facts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px}\n"
-    ".fact{padding:15px 13px 13px;background:var(--board-lift);border-radius:3px;box-shadow:0 4px 14px rgba(0,0,0,.24)}\n"
-    ".fact b{display:block;font-family:var(--data);font-weight:700;font-size:26px;line-height:1;color:var(--yellow)}\n"
-    ".fact span{display:block;margin-top:7px;font-size:15.5px;color:var(--chalk-body)}\n",
-    "/* ---------- who we are ---------- */\n" + ABOUT_CSS_COMMON
-    + ".about p{color:var(--chalk-body)}\n.about p:first-child{color:var(--chalk)}\n",
-    "chalk: the stat grid becomes prose")
 
 sub(CK, ".slot .t,.spots,.when,.play .price,.fact b,.strip .who b{font-variant-numeric:tabular-nums}",
     ".slot .t,.spots,.row .pr,.row .wt,.strip .who b{font-variant-numeric:tabular-nums}",
@@ -201,7 +177,7 @@ sub(CK, "  .facts{grid-template-columns:repeat(4,1fr)}\n  .play{grid-template-co
     "chalk: the price list goes to one line at 640")
 
 sub(CK, "  .play h3{font-size:26px}\n  .play p{font-size:17.5px}\n",
-    "  .row .nm{font-size:22px}\n  .about p{font-size:18px}\n",
+    "  .row .nm{font-size:22px}\n",
     "chalk: desktop type steps")
 
 # --- world B: crayon on construction paper
@@ -225,15 +201,6 @@ sub(CR,
     ".row:hover .nm,.row:focus-visible .nm{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:5px}\n",
     "crayon: rows replace the cards")
 
-sub(CR,
-    "/* ---------- facts ---------- */\n"
-    ".facts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px}\n"
-    ".fact{padding:15px 13px 13px;background:var(--paper-inset);border-radius:3px;box-shadow:0 4px 14px rgba(0,0,0,.26)}\n"
-    ".fact b{display:block;font-family:var(--data);font-weight:700;font-size:26px;line-height:1;color:var(--yellow)}\n"
-    ".fact span{display:block;margin-top:7px;font-size:15.5px;color:var(--wax-body)}\n",
-    "/* ---------- who we are ---------- */\n" + ABOUT_CSS_COMMON
-    + ".about p{color:var(--wax-body)}\n.about p:first-child{color:var(--wax)}\n",
-    "crayon: the stat grid becomes prose")
 
 sub(CR, ".slot .t,.spots,.when,.play .price,.fact b,.strip .who b{font-variant-numeric:tabular-nums}",
     ".slot .t,.spots,.row .pr,.row .wt,.strip .who b{font-variant-numeric:tabular-nums}",
@@ -245,7 +212,7 @@ sub(CR, "  .facts{grid-template-columns:repeat(4,1fr)}\n",
     "crayon: the price list goes to one line at 640")
 
 sub(CR, "  .play h3{font-size:26px}\n  .play p{font-size:17.5px}\n",
-    "  .row .nm{font-size:22px}\n  .about p{font-size:18px}\n",
+    "  .row .nm{font-size:22px}\n",
     "crayon: desktop type steps")
 
 # --- world C: ballpoint on a ruled sheet. Rows sit on the rule pitch.
@@ -268,18 +235,9 @@ sub(NB,
     ".row:hover .nm,.row:focus-visible .nm{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}\n",
     "notebook: rows replace the cards")
 
-sub(NB,
-    "/* ---------- facts ---------- */\n"
-    ".facts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}\n"
-    ".fact{padding:14px 12px 12px;background:#fff;border:2px solid var(--ink);border-radius:3px}\n"
-    ".fact b{display:block;font-family:var(--data);font-weight:700;font-size:26px;line-height:1;color:var(--pink)}\n"
-    ".fact span{display:block;margin-top:7px;font-size:15.5px;color:var(--ink-body)}\n",
-    "/* ---------- who we are ---------- */\n" + ABOUT_CSS_COMMON
-    + ".about p{color:var(--ink-body)}\n.about p:first-child{color:var(--ink)}\n",
-    "notebook: the stat grid becomes prose")
 
 sub(NB, ".lede,.play p,.note,.close p,footer p,#booking-note p{line-height:var(--sheet)}",
-    ".lede,.about p,.note,.close p,footer p,#booking-note p{line-height:var(--sheet)}",
+    ".lede,.note,.close p,footer p,#booking-note p{line-height:var(--sheet)}",
     "notebook: the new prose is written on the ruled lines")
 
 sub(NB, ".slot .t,.spots,.when,.play .price,.fact b,.strip .who b{font-variant-numeric:tabular-nums}",
@@ -293,7 +251,7 @@ sub(NB, "  .facts{grid-template-columns:repeat(4,1fr)}\n",
     "notebook: the price list goes to one line at 640")
 
 sub(NB, "  .play h3{font-size:26px}\n  .play p{font-size:17.5px}\n",
-    "  .row .nm{font-size:22px}\n  .about p{font-size:18px}\n",
+    "  .row .nm{font-size:22px}\n",
     "notebook: desktop type steps")
 
 print("\n".join(log))

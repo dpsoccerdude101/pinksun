@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Compose the review images for the reshaped landing page.
 
-1. shots/childlike/hierarchy.jpg - the price list stacked over the about section,
+1. shots/childlike/hierarchy.jpg - the price list stacked over the visit section,
    in all three materials, side by side.
 2. shots/childlike/board-whole.jpg - the whole board page, one column, so the
    shape of the funnel is visible at a glance.
@@ -41,7 +41,7 @@ PANEL_W = 460
 cols = []
 for key, label in PANELS:
     top = labelled(Image.open(f"{S}/{key}-play.png").convert("RGB"), label, PANEL_W)
-    bottom = Image.open(f"{S}/{key}-about.png").convert("RGB")
+    bottom = Image.open(f"{S}/{key}-visit.png").convert("RGB")
     bottom = bottom.resize((PANEL_W, int(bottom.height * PANEL_W / bottom.width)), Image.LANCZOS)
     cols.append(stack(top, bottom))
 

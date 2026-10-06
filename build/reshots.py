@@ -17,7 +17,7 @@ with sync_playwright() as p:
         pg.goto("file://" + os.path.join(ROOT, page), wait_until="networkidle")
         pg.wait_for_timeout(1800)
         pg.screenshot(path=f"{OUT}/{name}-full.png", full_page=True)
-        for sec in ("play", "about"):
+        for sec in ("play", "visit"):
             el = pg.query_selector(f"#{sec}")
             if el:
                 el.screenshot(path=f"{OUT}/{name}-{sec}.png")
