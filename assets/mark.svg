@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 112" role="img" aria-label="PinkSun mark: a pink sun dome with rays alternating pink and yellow">
+  <g stroke-width="12" stroke-linecap="butt">
+    <line x1="50.0" y1="104.0" x2="4.0" y2="104.0" stroke="#FF3D9A"/>
+    <line x1="51.7" y1="91.1" x2="7.3" y2="79.2" stroke="#FFE800"/>
+    <line x1="56.7" y1="79.0" x2="16.9" y2="56.0" stroke="#FF3D9A"/>
+    <line x1="64.6" y1="68.6" x2="32.1" y2="36.1" stroke="#FFE800"/>
+    <line x1="75.0" y1="60.7" x2="52.0" y2="20.9" stroke="#FF3D9A"/>
+    <line x1="87.1" y1="55.7" x2="75.2" y2="11.3" stroke="#FFE800"/>
+    <line x1="100.0" y1="54.0" x2="100.0" y2="8.0" stroke="#FF3D9A"/>
+    <line x1="112.9" y1="55.7" x2="124.8" y2="11.3" stroke="#FFE800"/>
+    <line x1="125.0" y1="60.7" x2="148.0" y2="20.9" stroke="#FF3D9A"/>
+    <line x1="135.4" y1="68.6" x2="167.9" y2="36.1" stroke="#FFE800"/>
+    <line x1="143.3" y1="79.0" x2="183.1" y2="56.0" stroke="#FF3D9A"/>
+    <line x1="148.3" y1="91.1" x2="192.7" y2="79.2" stroke="#FFE800"/>
+    <line x1="150.0" y1="104.0" x2="196.0" y2="104.0" stroke="#FF3D9A"/>
+  </g>
+  <path d="M56.5,104 A43.5,43.5 0 0 1 143.5,104 Z" fill="#FF3D9A"/>
+</svg>

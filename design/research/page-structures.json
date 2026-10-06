@@ -1,0 +1,394 @@
+{
+ "Fairport Pickleball Club": {
+  "nav": [
+   "HOME -> https://www.fairportpickleballclub.com",
+   "FAQs -> https://www.fairportpickleballclub.com/faqs",
+   "ABOUT US -> https://www.fairportpickleballclub.com/about-us",
+   "THE CLUB -> https://www.fairportpickleballclub.com/the-club",
+   "CLUB POLICIES -> https://www.fairportpickleballclub.com/copy-of-the-club",
+   "THE TEAM -> https://www.fairportpickleballclub.com/the-team",
+   "MONTHLY NEWSLETTER -> https://www.fairportpickleballclub.com/about-1",
+   "PPA TOURNAMENT -> https://www.fairportpickleballclub.com/ppa-tournament",
+   "PARTNERSHIPS -> https://www.fairportpickleballclub.com/partnerships",
+   "PLAY -> https://www.fairportpickleballclub.com/play",
+   "OPEN PLAY &amp; RESERVATIONS -> https://www.fairportpickleballclub.com/open-play-and-court-reservations",
+   "SOCIAL DINKING -> https://www.fairportpickleballclub.com/social-dinking",
+   "LESSONS &amp; CLINICS -> https://www.fairportpickleballclub.com/lessons-and-clinics",
+   "COACHES -> https://www.fairportpickleballclub.com/coaches",
+   "MEMBERSHIPS -> https://www.fairportpickleballclub.com/memberships",
+   "LEAGUES -> https://www.fairportpickleballclub.com/leagues",
+   "TOURNAMENTS -> https://www.fairportpickleballclub.com/upcoming-events",
+   "EVENTS -> https://www.fairportpickleballclub.com/event-inquiry",
+   "BAR &amp; FOOD -> https://www.fairportpickleballclub.com/bar-and-food"
+  ],
+  "ctas": [
+   "Reserve Your Court -> https://app.courtreserve.com/Online/Reservations/Index/12203",
+   "Book a Time -> https://app.courtreserve.com/Online/Calendar/Events/12203/Week"
+  ],
+  "vendors": [
+   "courtreserve"
+  ],
+  "prices": [],
+  "title": "Home | Fairport Pickleball Club"
+ },
+ "Fairport - reservations": {
+  "nav": [
+   "HOME -> https://www.fairportpickleballclub.com",
+   "FAQs -> https://www.fairportpickleballclub.com/faqs",
+   "ABOUT US -> https://www.fairportpickleballclub.com/about-us",
+   "THE CLUB -> https://www.fairportpickleballclub.com/the-club",
+   "CLUB POLICIES -> https://www.fairportpickleballclub.com/copy-of-the-club",
+   "THE TEAM -> https://www.fairportpickleballclub.com/the-team",
+   "MONTHLY NEWSLETTER -> https://www.fairportpickleballclub.com/about-1",
+   "PPA TOURNAMENT -> https://www.fairportpickleballclub.com/ppa-tournament",
+   "PARTNERSHIPS -> https://www.fairportpickleballclub.com/partnerships",
+   "PLAY -> https://www.fairportpickleballclub.com/play",
+   "OPEN PLAY &amp; RESERVATIONS -> https://www.fairportpickleballclub.com/open-play-and-court-reservations",
+   "SOCIAL DINKING -> https://www.fairportpickleballclub.com/social-dinking",
+   "LESSONS &amp; CLINICS -> https://www.fairportpickleballclub.com/lessons-and-clinics",
+   "COACHES -> https://www.fairportpickleballclub.com/coaches",
+   "MEMBERSHIPS -> https://www.fairportpickleballclub.com/memberships",
+   "LEAGUES -> https://www.fairportpickleballclub.com/leagues",
+   "TOURNAMENTS -> https://www.fairportpickleballclub.com/upcoming-events",
+   "EVENTS -> https://www.fairportpickleballclub.com/event-inquiry",
+   "BAR &amp; FOOD -> https://www.fairportpickleballclub.com/bar-and-food"
+  ],
+  "ctas": [
+   "RESERVE -> https://app.courtreserve.com/Online/Reservations/Index/12203"
+  ],
+  "vendors": [
+   "courtreserve"
+  ],
+  "prices": [],
+  "title": "Open Play &amp; Court Reservations | Fairport Pickleball Club"
+ },
+ "Fairport - memberships": {
+  "nav": [
+   "HOME -> https://www.fairportpickleballclub.com",
+   "FAQs -> https://www.fairportpickleballclub.com/faqs",
+   "ABOUT US -> https://www.fairportpickleballclub.com/about-us",
+   "THE CLUB -> https://www.fairportpickleballclub.com/the-club",
+   "CLUB POLICIES -> https://www.fairportpickleballclub.com/copy-of-the-club",
+   "THE TEAM -> https://www.fairportpickleballclub.com/the-team",
+   "MONTHLY NEWSLETTER -> https://www.fairportpickleballclub.com/about-1",
+   "PPA TOURNAMENT -> https://www.fairportpickleballclub.com/ppa-tournament",
+   "PARTNERSHIPS -> https://www.fairportpickleballclub.com/partnerships",
+   "PLAY -> https://www.fairportpickleballclub.com/play",
+   "OPEN PLAY &amp; RESERVATIONS -> https://www.fairportpickleballclub.com/open-play-and-court-reservations",
+   "SOCIAL DINKING -> https://www.fairportpickleballclub.com/social-dinking",
+   "LESSONS &amp; CLINICS -> https://www.fairportpickleballclub.com/lessons-and-clinics",
+   "COACHES -> https://www.fairportpickleballclub.com/coaches",
+   "MEMBERSHIPS -> https://www.fairportpickleballclub.com/memberships",
+   "LEAGUES -> https://www.fairportpickleballclub.com/leagues",
+   "TOURNAMENTS -> https://www.fairportpickleballclub.com/upcoming-events",
+   "EVENTS -> https://www.fairportpickleballclub.com/event-inquiry",
+   "BAR &amp; FOOD -> https://www.fairportpickleballclub.com/bar-and-food"
+  ],
+  "ctas": [],
+  "vendors": [
+   "courtreserve"
+  ],
+  "prices": [
+   "$1",
+   "$105",
+   "$110",
+   "$16",
+   "$45/hour",
+   "$5",
+   "$60",
+   "$600",
+   "$70",
+   "$75",
+   "$750"
+  ],
+  "title": "Memberships | Fairport Pickleball Club"
+ },
+ "Dinkers": {
+  "nav": [
+   "Home -> /",
+   "Memberships -> /memberships",
+   "Staff and Coaches -> /staff-and-coaches",
+   "Backyard Bar -> /backyard-bar",
+   "Policies -> /policies"
+  ],
+  "ctas": [
+   "Court Reserve Log-in -> https://app.courtreserve.com/Account/Login"
+  ],
+  "vendors": [
+   "court reserve",
+   "courtreserve"
+  ],
+  "prices": [],
+  "title": "Dinkers"
+ },
+ "Dinkers - memberships": {
+  "nav": [
+   "Home -> /",
+   "Memberships -> /memberships",
+   "Staff and Coaches -> /staff-and-coaches",
+   "Backyard Bar -> /backyard-bar",
+   "Policies -> /policies"
+  ],
+  "ctas": [],
+  "vendors": [],
+  "prices": [
+   "$100",
+   "$15",
+   "$65"
+  ],
+  "title": "Dinkers"
+ },
+ "Dinkers - drop-ins": {
+  "nav": [
+   "Home -> /",
+   "Memberships -> /memberships",
+   "Staff and Coaches -> /staff-and-coaches",
+   "Backyard Bar -> /backyard-bar",
+   "Policies -> /policies"
+  ],
+  "ctas": [
+   "Drop-in schedule -> https://widgets.courtreserve.com/Online/Public/EmbedCode/6685/105295"
+  ],
+  "vendors": [
+   "court reserve",
+   "courtreserve",
+   "spond"
+  ],
+  "prices": [
+   "$12"
+  ],
+  "title": "Explore Pickleball Fun at Dinkers in East Rochester, NY"
+ },
+ "ROC City": {
+  "nav": [
+   "Google Reviews -> https://g.page/r/CUKF33-qlOALEB0/review",
+   "About -> https://roccitypickleball.com/#about",
+   "FAQs -> https://roccitypickleball.com/#faqs",
+   "Contact -> https://roccitypickleball.com/#contact-us",
+   "Membership Options -> https://roccitypickleball.com/#followthrough",
+   "The ROC City -> https://roccitypickleball.com/#theroccity",
+   "Non-Member -> https://roccitypickleball.com/#nonmember",
+   "The Family -> https://roccitypickleball.com/#the-family",
+   "Let&#8217;s Learn -> https://roccitypickleball.com/learn-to-play/",
+   "Lessons -> https://roccitypickleball.com/learn-to-play/",
+   "Private Lessons -> https://roccitypickleball.com/learn-to-play/",
+   "Clinics -> https://roccitypickleball.com/learn-to-play/",
+   "Coach &#038; Play -> https://roccitypickleball.com/learn-to-play/",
+   "Leagues -> https://roccitypickleball.com/leagues/",
+   "Events &#038; Tournaments -> https://roccitypickleball.com/tournaments/",
+   "Private Events &#038; Team Building -> https://roccitypickleball.com/private-events/",
+   "Book a Court -> https://app.courtreserve.com/Online/Memberships/ViewPublicMembership/10899?membershipId=107893",
+   "Home -> https://roccitypickleball.com/",
+   "Contact Us -> https://roccitypickleball.com/#contact-us",
+   "Courtship -> https://roccitypickleball.com/#courtship",
+   "The Weekday -> https://roccitypickleball.com/#the-weekday",
+   "Dos Pickles -> https://roccitypickleball.com/#dos-pickles"
+  ],
+  "ctas": [
+   "Non-Member -> https://roccitypickleball.com/#nonmember",
+   "Book a Court -> https://app.courtreserve.com/Online/Memberships/ViewPublicMembership/10899?membershipId=107893",
+   "Non-Member -> https://roccitypickleball.com/#non-member",
+   "Join Now -> https://app.courtreserve.com/Online/Memberships/ViewPublicMembership/10899?membershipId=108142",
+   "Join Now -> https://app.courtreserve.com/Online/Memberships/ViewPublicMembership/10899?membershipId=113023"
+  ],
+  "vendors": [
+   "court reserve",
+   "courtreserve",
+   "spond",
+   "teamreach"
+  ],
+  "prices": [
+   "$10",
+   "$100",
+   "$16",
+   "$18",
+   "$20",
+   "$24",
+   "$25",
+   "$26.00",
+   "$3",
+   "$5",
+   "$65",
+   "$650",
+   "$8",
+   "$895"
+  ],
+  "title": "Home - ROC City Pickleball"
+ },
+ "Ace Pickleball Club": {
+  "nav": [
+   "Skip to Content -> #page",
+   "FIND A CLUB -> /clubs",
+   "CHAMPIONSHIP SERIES -> /championships",
+   "CLINICS -> /clinics",
+   "FLEX LEAGUES -> /flex",
+   "PRIVATE EVENTS -> /private-events",
+   "DESIGN &amp; BUILD -> https://playmakersconstruction.com",
+   "INVEST -> https://invest.acepickleballclub.com",
+   "MEMBER LOGIN -> https://members.acepickleballclub.com/login?_gl=1*k76ysz*_ga*MTIzNzc0MDUxMy4xNjc3NzkwODk4*_ga_Q420M5C54E*MTcxMjkzMzAzMC4yMjMuMS4xNzEyOTMzMDQ1LjAuMC4w",
+   "Folder: PROGRAMS &amp; EVENTS -> /programs-events",
+   "Back -> /"
+  ],
+  "ctas": [
+   "MEMBER LOGIN -> https://members.acepickleballclub.com/login?_gl=1*k76ysz*_ga*MTIzNzc0MDUxMy4xNjc3NzkwODk4*_ga_Q420M5C54E*MTcxMjkzMzAzMC4yMjMuMS4xNzEyOTMzMDQ1LjAuMC4w"
+  ],
+  "vendors": [],
+  "prices": [],
+  "title": "Ace Pickleball Club"
+ },
+ "Ace - memberships": {
+  "nav": [
+   "Skip to Content -> #page",
+   "FIND A CLUB -> /clubs",
+   "CHAMPIONSHIP SERIES -> /championships",
+   "CLINICS -> /clinics",
+   "FLEX LEAGUES -> /flex",
+   "PRIVATE EVENTS -> /private-events",
+   "DESIGN &amp; BUILD -> https://playmakersconstruction.com",
+   "INVEST -> https://invest.acepickleballclub.com",
+   "MEMBER LOGIN -> https://members.acepickleballclub.com/login?_gl=1*k76ysz*_ga*MTIzNzc0MDUxMy4xNjc3NzkwODk4*_ga_Q420M5C54E*MTcxMjkzMzAzMC4yMjMuMS4xNzEyOTMzMDQ1LjAuMC4w",
+   "Folder: PROGRAMS &amp; EVENTS -> /programs-events",
+   "Back -> /"
+  ],
+  "ctas": [
+   "MEMBER LOGIN -> https://members.acepickleballclub.com/login?_gl=1*k76ysz*_ga*MTIzNzc0MDUxMy4xNjc3NzkwODk4*_ga_Q420M5C54E*MTcxMjkzMzAzMC4yMjMuMS4xNzEyOTMzMDQ1LjAuMC4w"
+  ],
+  "vendors": [],
+  "prices": [
+   "$100",
+   "$25.00",
+   "$50"
+  ],
+  "title": "Terms and Conditions &mdash; Ace Pickleball Club"
+ },
+ "Pickleball Kingdom": {
+  "nav": [
+   "About -> /about",
+   "FAQ -> /faq",
+   "Leadership Team -> /leadership-team",
+   "Find A Club -> /clubs",
+   "Pickleball 101 -> /pickleball-101",
+   "News -> /news",
+   "Franchise -> /franchise",
+   "United States -> /franchise",
+   "India -> /india",
+   "Europe -> /europe",
+   "Australia -> /anz",
+   "New Zealand -> /anz",
+   "Paddle Battle -> /paddlebattle",
+   "Contact Us -> /contact",
+   "Private Events -> /private-events",
+   "United States of America -> /franchise"
+  ],
+  "ctas": [
+   "Join the kingdom -> /clubs",
+   "Book An Event -> /book-an-event"
+  ],
+  "vendors": [
+   "playbypoint"
+  ],
+  "prices": [
+   "$10",
+   "$110.00",
+   "$15",
+   "$175.00",
+   "$190.00",
+   "$20",
+   "$249.00",
+   "$30.00",
+   "$50.00",
+   "$85.00",
+   "$99.00"
+  ],
+  "title": "Play Indoor Pickleball | Join The Kingdom Today!"
+ },
+ "Pickleball Kingdom - memberships": {
+  "nav": [
+   "About -> /about",
+   "FAQ -> /faq",
+   "Leadership Team -> /leadership-team",
+   "Find A Club -> /clubs",
+   "Pickleball 101 -> /pickleball-101",
+   "News -> /news",
+   "Franchise -> /franchise",
+   "United States -> /franchise",
+   "India -> /india",
+   "Europe -> /europe",
+   "Australia -> /anz",
+   "New Zealand -> /anz",
+   "Paddle Battle -> /paddlebattle",
+   "Contact Us -> /contact",
+   "Private Events -> /private-events",
+   "United States of America -> /franchise"
+  ],
+  "ctas": [
+   "Join Club -> /clubs/",
+   "Join Club -> /locations/"
+  ],
+  "vendors": [],
+  "prices": [
+   "$15/hr",
+   "$20/hr",
+   "$30"
+  ],
+  "title": "Pickleball Kingdom | Memberships | Unlock Exclusive Perks! - Join Today"
+ },
+ "Dill Dinkers - get started": {
+  "nav": [
+   "Locations -> http://locations.dilldinkers.com",
+   "Clinics &#038; Lessons -> https://dilldinkers.com/clinics-lessons/",
+   "Parties &#038; Events -> https://dilldinkers.com/parties-events/",
+   "Get Started -> https://dilldinkers.com/get-started/",
+   "Faqs -> https://dilldinkers.com/get-started/#faqs",
+   "Create a Court Reserve account -> https://dilldinkers.com/get-started/#create-account",
+   "Code of Conduct -> https://dilldinkers.com/get-started/#code-of-conduct",
+   "Rules + Regulations -> https://dilldinkers.com/get-started/#rules-regulations",
+   "Open Play Rules -> https://dilldinkers.com/get-started/#open-play-rules",
+   "News &#038; Blog -> https://locations.dilldinkers.com/news-and-blog",
+   "Advertising -> https://dilldinkers.com/advertising/",
+   "Franchising -> https://dilldinkers.com/franchising/",
+   "Meet Our Team -> https://dilldinkers.com/meet-our-team/",
+   "INTERNATIONAL FRANCHISING -> https://dilldinkers.com/international-franchising/",
+   "Facebook -> https://www.facebook.com/dilldinkers/",
+   "Instagram -> https://www.instagram.com/dilldinkers/?hl=en",
+   "Youtube -> https://www.youtube.com/@dilldinkers",
+   "Linkedin -> https://www.linkedin.com/company/dill-dinkers",
+   "Find Your Location -> https://locations.dilldinkers.com",
+   "Locations Near You -> http://locations.dilldinkers.com",
+   "Join Our Team -> https://dilldinkers.com/join-our-team/",
+   "Weather Policy -> https://dilldinkers.com/dill-dinkers-inclement-weather-policy/"
+  ],
+  "ctas": [
+   "Get Started -> https://dilldinkers.com/get-started/",
+   "Create a Court Reserve account -> https://dilldinkers.com/get-started/#create-account",
+   "How do I reserve a court? -> (js)",
+   "Join Our Team -> https://dilldinkers.com/join-our-team/"
+  ],
+  "vendors": [
+   "courtreserve"
+  ],
+  "prices": [],
+  "title": "Get Started - Dill Dinkers"
+ },
+ "Erie Canal Pickleball": {
+  "nav": [
+   "HOME -> https://www.eriecanalpickleball.com",
+   "MEMBERSHIPS -> https://www.eriecanalpickleball.com/services-7",
+   "EVENTS -> https://www.eriecanalpickleball.com/services-5",
+   "RESTAURANT -> https://www.eriecanalpickleball.com/general-8",
+   "ABOUT -> https://www.eriecanalpickleball.com/about",
+   "CONTACT -> https://www.eriecanalpickleball.com/contact",
+   "S H O P -> https://www.eriecanalpickleball.com/category/all-products"
+  ],
+  "ctas": [],
+  "vendors": [
+   "court reserve",
+   "courtreserve"
+  ],
+  "prices": [
+   "$15.00",
+   "$50"
+  ],
+  "title": "Erie Canal Pickleball Center | Indoor Pickleball Courts | DeWitt, New York"
+ }
+}
