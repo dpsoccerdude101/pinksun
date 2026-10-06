@@ -29,23 +29,6 @@ FINISH  unreviewed and undocumented is unfinished; this build ends with the
 
 <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
   <defs>
-    <!-- Crayon is wax dragged across card stock: streaky deposit, wobbly edge,
-         and the paper's tooth punching through where the stick skipped. -->
-    <filter id="chalk" x="-12%" y="-12%" width="124%" height="124%" color-interpolation-filters="sRGB">
-      <feTurbulence type="fractalNoise" baseFrequency="0.02 0.42" numOctaves="2" seed="6" result="e"/>
-      <feDisplacementMap in="SourceGraphic" in2="e" scale="7" xChannelSelector="R" yChannelSelector="G" result="rough"/>
-      <!-- the streaks a wax stick leaves: fine across, long along -->
-      <feTurbulence type="fractalNoise" baseFrequency="0.03 0.5" numOctaves="2" seed="13" result="wax"/>
-      <feColorMatrix in="wax" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  2.9 0 0 0 -0.55" result="waxA"/>
-      <feTurbulence type="fractalNoise" baseFrequency="0.62" numOctaves="2" seed="3" result="tooth"/>
-      <feColorMatrix in="tooth" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.3 0 0 0 0.3" result="toothA"/>
-      <feComposite in="waxA" in2="toothA" operator="arithmetic" k1="1" k2="0" k3="0" k4="0" result="mask"/>
-      <feComposite in="rough" in2="mask" operator="in" result="waxy"/>
-      <feComponentTransfer in="waxy" result="dense"><feFuncA type="linear" slope="1.35"/></feComponentTransfer>
-      <feGaussianBlur in="dense" stdDeviation="0.6" result="softedge"/>
-      <feMerge><feMergeNode in="softedge"/><feMergeNode in="dense"/></feMerge>
-    </filter>
-
     <symbol id="sun" viewBox="0 0 200 112">
 <line x1="50.0" y1="104.0" x2="4.0" y2="104.0" stroke="#FF8FC5" stroke-width="9.0" stroke-linecap="butt"/>
 <line x1="52.0" y1="89.9" x2="7.9" y2="77.0" stroke="#FFE800" stroke-width="9.0" stroke-linecap="butt"/>
@@ -85,6 +68,12 @@ FINISH  unreviewed and undocumented is unfinished; this build ends with the
             stroke-linecap="round" stroke-dasharray="8 7"/>
       <path d="M39,33 L50.5,45.5 L57,29" fill="none" stroke="currentColor" stroke-width="5"
             stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- the same arrow the board draws, in wax: thicker stick, longer skips -->
+    <symbol id="arrowR" viewBox="0 0 58 20">
+      <path d="M2,10 L44,9.2" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-dasharray="8 7"/>
+      <path d="M35,3.5 L51,10 L35,16.5" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
   </defs>
 </svg>

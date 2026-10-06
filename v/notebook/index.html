@@ -30,18 +30,18 @@ FINISH  unreviewed and undocumented is unfinished; this build ends with the
 
 <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
   <defs>
-    <!-- Ballpoint is an even, slightly nervous line; the colouring is marker,
-         laid on after the outline the way a kid fills a drawing in. -->
-    <filter id="chalk" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
-      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="8" result="e"/>
-      <feDisplacementMap in="SourceGraphic" in2="e" scale="2.6" xChannelSelector="R" yChannelSelector="G" result="rough"/>
-      <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="2" seed="2" result="t"/>
-      <feColorMatrix in="t" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.05 0 0 0 0.32" result="tA"/>
-      <feComposite in="rough" in2="tA" operator="in"/>
+    <!-- Ballpoint is an even, slightly nervous line. Ink sinks into paper instead
+         of sitting on top of it the way pencil dust does. The colouring is marker,
+         laid on after the line: the nib drags, so the fill breathes slowly across
+         the stroke. Broad and smooth on purpose, never gritty, because grain is
+         exactly what makes a fill read pencil, and pencil is the wrong material. -->
+    <filter id="ink" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.05" numOctaves="2" seed="8" result="drag"/>
+      <feColorMatrix in="drag" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.85 0 0 0 0.1" result="dragA"/>
+      <feComposite in="SourceGraphic" in2="dragA" operator="arithmetic" k1="0" k2="1" k3="-0.5" k4="0.1" result="marked"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="1" seed="8" result="e"/>
+      <feDisplacementMap in="marked" in2="e" scale="0.9" xChannelSelector="R" yChannelSelector="G"/>
     </filter>
-    <pattern id="hatch" patternUnits="userSpaceOnUse" width="10" height="10" patternTransform="rotate(-38)">
-      <line x1="0" y1="0" x2="0" y2="10" stroke="#D6216B" stroke-width="1.5"/>
-    </pattern>
 
     <symbol id="sun" viewBox="0 0 200 112">
 <line x1="50.0" y1="104.0" x2="4.0" y2="104.0" stroke="#D6216B" stroke-width="9.0" stroke-linecap="butt"/>
@@ -69,6 +69,12 @@ FINISH  unreviewed and undocumented is unfinished; this build ends with the
             stroke-linecap="round" stroke-dasharray="6 5"/>
       <path d="M41,34 L50.5,45.5 L56,30" fill="none" stroke="currentColor" stroke-width="3"
             stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- the same arrow the board draws, in ballpoint: thinner and tighter -->
+    <symbol id="arrowR" viewBox="0 0 58 20">
+      <path d="M2,10 L44,9.6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="7 5"/>
+      <path d="M37,4 L51,10 L37,16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
   </defs>
 </svg>
@@ -99,7 +105,7 @@ FINISH  unreviewed and undocumented is unfinished; this build ends with the
 
   <section class="hero wrap">
     <div class="hero-art">
-      <svg class="sun" viewBox="0 0 200 112" role="img" aria-label="A pink sun drawn in ballpoint and coloured in with marker" filter="url(#chalk)"><use href="#sun"/></svg>
+      <svg class="sun" viewBox="0 0 200 112" role="img" aria-label="A pink sun drawn in ballpoint and coloured in with marker" filter="url(#ink)"><use href="#sun"/></svg>
       <span class="scribble" aria-hidden="true"><i class="py">pink</i> <i class="sy">sun</i></span>
     </div>
 

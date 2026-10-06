@@ -21,23 +21,6 @@ old_contract = contract_re.search(html).group(0)
 
 CRAYON_DEFS = '''<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
   <defs>
-    <!-- Crayon is wax dragged across card stock: streaky deposit, wobbly edge,
-         and the paper's tooth punching through where the stick skipped. -->
-    <filter id="chalk" x="-12%" y="-12%" width="124%" height="124%" color-interpolation-filters="sRGB">
-      <feTurbulence type="fractalNoise" baseFrequency="0.02 0.42" numOctaves="2" seed="6" result="e"/>
-      <feDisplacementMap in="SourceGraphic" in2="e" scale="7" xChannelSelector="R" yChannelSelector="G" result="rough"/>
-      <!-- the streaks a wax stick leaves: fine across, long along -->
-      <feTurbulence type="fractalNoise" baseFrequency="0.03 0.5" numOctaves="2" seed="13" result="wax"/>
-      <feColorMatrix in="wax" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  2.9 0 0 0 -0.55" result="waxA"/>
-      <feTurbulence type="fractalNoise" baseFrequency="0.62" numOctaves="2" seed="3" result="tooth"/>
-      <feColorMatrix in="tooth" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.3 0 0 0 0.3" result="toothA"/>
-      <feComposite in="waxA" in2="toothA" operator="arithmetic" k1="1" k2="0" k3="0" k4="0" result="mask"/>
-      <feComposite in="rough" in2="mask" operator="in" result="waxy"/>
-      <feComponentTransfer in="waxy" result="dense"><feFuncA type="linear" slope="1.35"/></feComponentTransfer>
-      <feGaussianBlur in="dense" stdDeviation="0.6" result="softedge"/>
-      <feMerge><feMergeNode in="softedge"/><feMergeNode in="dense"/></feMerge>
-    </filter>
-
 {{SUN_CRAYON}}
 
     <!-- the mark keeps its shape: same wax streaks, a third of the displacement -->
@@ -63,6 +46,12 @@ CRAYON_DEFS = '''<svg width="0" height="0" aria-hidden="true" focusable="false" 
       <path d="M39,33 L50.5,45.5 L57,29" fill="none" stroke="currentColor" stroke-width="5"
             stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
+
+    <!-- the same arrow the board draws, in wax: thicker stick, longer skips -->
+    <symbol id="arrowR" viewBox="0 0 58 20">
+      <path d="M2,10 L44,9.2" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-dasharray="8 7"/>
+      <path d="M35,3.5 L51,10 L35,16.5" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
   </defs>
 </svg>
 
@@ -70,18 +59,18 @@ CRAYON_DEFS = '''<svg width="0" height="0" aria-hidden="true" focusable="false" 
 
 NOTEBOOK_DEFS = '''<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
   <defs>
-    <!-- Ballpoint is an even, slightly nervous line; the colouring is marker,
-         laid on after the outline the way a kid fills a drawing in. -->
-    <filter id="chalk" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
-      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="8" result="e"/>
-      <feDisplacementMap in="SourceGraphic" in2="e" scale="2.6" xChannelSelector="R" yChannelSelector="G" result="rough"/>
-      <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="2" seed="2" result="t"/>
-      <feColorMatrix in="t" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.05 0 0 0 0.32" result="tA"/>
-      <feComposite in="rough" in2="tA" operator="in"/>
+    <!-- Ballpoint is an even, slightly nervous line. Ink sinks into paper instead
+         of sitting on top of it the way pencil dust does. The colouring is marker,
+         laid on after the line: the nib drags, so the fill breathes slowly across
+         the stroke. Broad and smooth on purpose, never gritty, because grain is
+         exactly what makes a fill read pencil, and pencil is the wrong material. -->
+    <filter id="ink" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.05" numOctaves="2" seed="8" result="drag"/>
+      <feColorMatrix in="drag" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.85 0 0 0 0.1" result="dragA"/>
+      <feComposite in="SourceGraphic" in2="dragA" operator="arithmetic" k1="0" k2="1" k3="-0.5" k4="0.1" result="marked"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="1" seed="8" result="e"/>
+      <feDisplacementMap in="marked" in2="e" scale="0.9" xChannelSelector="R" yChannelSelector="G"/>
     </filter>
-    <pattern id="hatch" patternUnits="userSpaceOnUse" width="10" height="10" patternTransform="rotate(-38)">
-      <line x1="0" y1="0" x2="0" y2="10" stroke="#D6216B" stroke-width="1.5"/>
-    </pattern>
 
 {{SUN_NOTEBOOK}}
 
@@ -94,6 +83,12 @@ NOTEBOOK_DEFS = '''<svg width="0" height="0" aria-hidden="true" focusable="false
             stroke-linecap="round" stroke-dasharray="6 5"/>
       <path d="M41,34 L50.5,45.5 L56,30" fill="none" stroke="currentColor" stroke-width="3"
             stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- the same arrow the board draws, in ballpoint: thinner and tighter -->
+    <symbol id="arrowR" viewBox="0 0 58 20">
+      <path d="M2,10 L44,9.6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="7 5"/>
+      <path d="M37,4 L51,10 L37,16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
   </defs>
 </svg>
@@ -159,6 +154,9 @@ def rewrite(page_html, defs, contract, world_css, depth, world_name):
     if world_css == "crayon.css":
         # the mark uses the gentler pass so its rays survive the wax
         out = out.replace('filter="url(#chalk)"', 'filter="url(#chalkmark)"')
+    if world_css == "notebook.css":
+        # ballpoint, not pencil: a hair of wobble and no grain
+        out = out.replace('filter="url(#chalk)"', 'filter="url(#ink)"')
     # the mark's label describes this world's material, not the board's
     ARIA = {"crayon.css": "A pink sun with rays drawn by hand in pink and yellow crayon",
             "notebook.css": "A pink sun drawn in ballpoint and coloured in with marker"}

@@ -6,7 +6,7 @@
  * To go live: set BOOKING_URL to the reservation portal, e.g.
  *   const BOOKING_URL = "https://app.courtreserve.com/Online/Portal/Index/12345";
  * CourtReserve is the default assumption because every dedicated club in the
- * Rochester market uses it and it supports per-product deep links.
+ * local market uses it and it supports per-product deep links.
  *
  * While BOOKING_URL is empty the funnel stays honest: the links point at the
  * on-page notice instead of inventing a third-party URL that might belong to

@@ -52,7 +52,7 @@ with sync_playwright() as p:
               fonts: ['Gloria Hallelujah','Patrick Hand','Archivo'].map(f => document.fonts.check('20px "'+f+'"')),
               scrollW: document.documentElement.scrollWidth,
               padBottom: getComputedStyle(document.body).paddingBottom,
-              filterPresent: !!document.querySelector('#chalk'),
+              filterIds: [...document.querySelectorAll('filter')].map(f => f.id),
               themeColor: (document.querySelector('meta[name=theme-color]')||{}).content || '',
             };
         }""")
@@ -69,7 +69,11 @@ with sync_playwright() as p:
         if d["nav"] != 1: fails.append(f"{name}: nav CTA = {d['nav']}")
         if d["close"] != 1: fails.append(f"{name}: close block = {d['close']}")
         if not all(d["fonts"]): fails.append(f"{name}: font missing {d['fonts']}")
-        if not d["filterPresent"]: fails.append(f"{name}: material filter missing")
+        # each world draws its own material: the board chalks, the crayon waxes,
+        # the notebook inks. Asserting one shared id would only pass by accident.
+        want_filter = {"board": "chalk", "crayon": "chalkmark", "notebook": "ink"}.get(name)
+        if want_filter and want_filter not in d["filterIds"]:
+            fails.append(f"{name}: material filter #{want_filter} missing (has {d['filterIds']})")
         if not occ["clear"]: fails.append(f"{name}: bottom bar occludes footer")
         small = [c for c in d["ctrls"] if c[2] < 44]
         if small: fails.append(f"{name}: controls under 44px {small}")

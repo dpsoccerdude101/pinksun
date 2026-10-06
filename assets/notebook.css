@@ -54,7 +54,7 @@ body::before{
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad) 0 46px;position:relative;z-index:2}
 a{color:inherit}
 
-.skip{position:absolute;left:-9999px}
+.skip{position:absolute;left:-9999px;min-height:44px;display:inline-flex;align-items:center}
 .skip:focus{left:8px;top:8px;background:var(--yellow);color:var(--ink);padding:12px 14px;z-index:99;
   min-height:44px;display:inline-flex;align-items:center;border-radius:3px;box-shadow:0 0 0 2px var(--ink)}
 

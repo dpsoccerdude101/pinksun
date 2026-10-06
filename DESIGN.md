@@ -76,7 +76,11 @@ material changes.
 - **no outlines anywhere**, because the proof has none
 
 Generated from `build/logo.py`, so the geometry has one source of truth across all three worlds.
-Each world roughens the edge with its own material filter; none of them adds structure.
+Each world roughens the edge with its own material filter — `#chalk` on the board, `#chalkmark`
+in crayon, `#ink` in the notebook — and none of them adds structure. `build/check_worlds.py`
+asserts each world's own filter by name, so a world cannot quietly lose its material and still
+pass: an earlier version of that gate looked for `#chalk` everywhere, which only passed by
+accident.
 
 One deliberate translation: the proof's yellow ink is unreadable on paper (about 1.1:1), so the
 notebook world carries it as a deep amber marker. The board and crayon worlds keep the proof's
@@ -92,11 +96,16 @@ Materials are real SVG turbulence, not a flat imitation.
   `feComponentTransfer` restores density and a 0.7 px blur adds dust, and a white
   turbulence overlay lays powder over the pigment so the colour reads matte. An early
   version used a dilated blurred halo and read as neon glow; blur is not chalk.
-- **Wax (B)** — anisotropic turbulence (`0.02 0.42`) drags the displacement along one axis so
-  strokes streak the way a crayon does, with the paper's tooth showing through.
-- **Ballpoint (C)** — a small 2.6 px displacement for a nervous but even line, near-opaque.
-  Colour is laid in afterwards as a second stroke inside the ink outline, the way a child
-  fills a drawing in, so the outlines stay visible at every weight.
+- **Wax (B)** — `#chalkmark`: anisotropic turbulence (`0.03 0.5`) drags the displacement along
+  one axis so strokes streak the way a crayon does, with the paper's tooth showing through. It
+  is a third of the board's displacement, because the full chalk pass ate the mark's rays.
+- **Ballpoint (C)** — `#ink`: a 0.9 px displacement for a nervous but even line, over a broad,
+  slow (`0.012 0.05`) density drag so the marker fill breathes across the stroke instead of
+  sitting flat. Broad and smooth on purpose, never gritty: high-frequency grain is exactly what
+  makes a fill read pencil, and pencil is the wrong material for a ruled sheet. Measured rather
+  than eyeballed (`build/measure_fill.py`): the dome's luminance standard deviation is 8.3 in
+  the notebook against 8.1 for the chalked board and 0.45 for the waxed crayon, whose waxiness
+  lives in its edges rather than its fill.
 - **Board ground** — layered radial gradients as wipe marks, a `repeating-linear-gradient` for
   the streaks a board dries in, and a fixed turbulence tile at 13% for slate grain. At phone
   size the strokes alone cannot carry "chalk", so the ground has to.

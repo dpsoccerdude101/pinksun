@@ -9,8 +9,9 @@ concept. Six courts. It exists to demonstrate what a dedicated court club's webs
 
 ## Audience
 
-Pickleball players in the Rochester and Monroe County area, rated 2.5 to 4.5, looking for
-indoor courts from November through April. Two distinct visitors:
+Pickleball players in and around Wren Hollow, the invented town the site is set in. The
+concept is aimed at a real market of the same shape: Rochester and Monroe County, rated
+2.5 to 4.5, looking for indoor courts from November through April. Two distinct visitors:
 
 - **The regular** who wants a specific block on a specific day and is annoyed by a phone call.
 - **The first-timer** who has heard about the sport, is not sure they are good enough, and is

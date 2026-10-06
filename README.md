@@ -53,7 +53,7 @@ var BOOKING_URL = "";
 
 Set that to the reservation portal and the whole funnel goes live, e.g. a CourtReserve
 portal URL. CourtReserve is the default assumption because every dedicated club in the
-Rochester market uses it and it supports per-product deep links.
+local market uses it and it supports per-product deep links.
 
 While it is empty, booking buttons point at an on-page notice instead. That is deliberate:
 inventing a third-party URL would risk pointing at somebody else's real club.
